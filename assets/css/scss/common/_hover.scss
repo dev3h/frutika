@@ -158,7 +158,8 @@ input[type="submit"] {
   }
 }
 
-div.owl-controls, .owl-controls div {
+div.owl-controls,
+.owl-controls div {
   transition: 0.3s;
 }
 
@@ -207,7 +208,7 @@ div.owl-controls div.owl-nav div:hover {
   }
 }
 
-a.cart-btn {
+:is(a, button).cart-btn {
   transition: 0.3s;
 
   &:hover {
@@ -275,13 +276,13 @@ ul.product-share li {
 
 .single-product-item {
   &:hover {
-    box-shadow: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   }
 
   transition: 0.3s;
 }
 
-.search-bar-tablecell button[type=submit] {
+.search-bar-tablecell button[type="submit"] {
   transition: 0.3s;
 
   &:hover {

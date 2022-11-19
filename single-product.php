@@ -1,6 +1,13 @@
 <?php
 $title = "";
 require_once "includes/header.php";
+require_once "classes/db.php";
+$id = $_GET['id'];
+
+$sql = "SELECT * FROM products WHERE id = '$id'";
+$result = Database::getInstance()->query($sql);
+$each = $result->fetch_assoc();
+
 ?>
 
 <!-- breadcrumb-section -->
@@ -9,8 +16,7 @@ require_once "includes/header.php";
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="breadcrumb-text">
-					<p>See more Details</p>
-					<h1>Single Product</h1>
+					<h1>Thông tin chi tiết</h1>
 				</div>
 			</div>
 		</div>
@@ -24,20 +30,20 @@ require_once "includes/header.php";
 		<div class="row">
 			<div class="col-md-5">
 				<div class="single-product-img">
-					<img src="assets/img/products/product-img-5.jpg" alt="">
+					<img src="/admin/uploads/fruits/<?php echo $each['photo'] ?>" alt="frutikha-<?php echo $each['name'] ?>">
 				</div>
 			</div>
 			<div class="col-md-7">
 				<div class="single-product-content">
-					<h3>Green apples have polyphenols</h3>
-					<p class="single-product-pricing"><span>Per Kg</span> $50</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta sint dignissimos, rem commodi cum voluptatem quae reprehenderit repudiandae ea tempora incidunt ipsa, quisquam animi perferendis eos eum modi! Tempora, earum.</p>
+					<h3><?php echo $each['name'] ?></h3>
+					<p class="single-product-pricing d-flex"><?php echo number_format($each['price'], 0, '', '.') ?></p>
+					<p><?php echo $each['short_description'] ?></p>
 					<div class="single-product-form">
 						<form action="index.html">
 							<input type="number" placeholder="0">
 						</form>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-						<p><strong>Categories: </strong>Fruits, Organic</p>
+						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
+						<p><strong>Thẻ: </strong>Trái cây, dưa hấu</p>
 					</div>
 					<h4>Share:</h4>
 					<ul class="product-share">
@@ -59,8 +65,8 @@ require_once "includes/header.php";
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="section-title">
-					<h3><span class="orange-text">Related</span> Products</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+					<h3>Các sản phẩm <span class="orange-text">liên quan</span></h3>
+					<p>Xem thêm các mặt hàng trái cây khác</p>
 				</div>
 			</div>
 		</div>

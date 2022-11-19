@@ -1,32 +1,9 @@
+@import "../base/mixins";
 /* -----------------------------------------------------------------------------
 
 # News Styles
 
 ----------------------------------------------------------------------------- */
-.news-bg-1 {
-  background-image: url(../img/latest-news/news-bg-1.jpg);
-}
-
-.news-bg-2 {
-  background-image: url(../img/latest-news/news-bg-2.jpg);
-}
-
-.news-bg-3 {
-  background-image: url(../img/latest-news/news-bg-3.jpg);
-}
-
-.news-bg-4 {
-  background-image: url(../img/latest-news/news-bg-4.jpg);
-}
-
-.news-bg-5 {
-  background-image: url(../img/latest-news/news-bg-5.jpg);
-}
-
-.news-bg-6 {
-  background-image: url(../img/latest-news/news-bg-6.jpg);
-}
-
 .latest-news-bg {
   height: 200px;
   background-size: cover;
@@ -38,6 +15,7 @@
 }
 
 .single-latest-news h3 {
+  @include excerpt;
   font-size: 20px;
   line-height: 1.25em;
   font-weight: 600;
@@ -66,6 +44,7 @@ p {
   &.excerpt {
     line-height: 1.8;
     color: #555;
+    @include excerpt;
   }
 }
 
@@ -84,8 +63,8 @@ p {
 }
 
 .single-artcile-bg {
-  background-image: url(../img/latest-news/news-bg-3.jpg);
-  height: 450px;
+  height: 300px;
+  overflow: hidden;
 }
 
 .pagination-wrap {
@@ -220,7 +199,7 @@ span.comment-date {
 
   form p {
     input {
-      &[type=text] {
+      &[type="text"] {
         border: 1px solid #ddd;
         width: 49%;
         padding: 15px;
@@ -229,7 +208,7 @@ span.comment-date {
         color: $text-color;
       }
 
-      &[type=email] {
+      &[type="email"] {
         border: 1px solid #ddd;
         width: 49%;
         padding: 15px;
@@ -286,13 +265,15 @@ span.comment-date {
   margin-left: 30px;
 }
 
-.recent-posts ul li, .archive-posts ul li {
+.recent-posts ul li,
+.archive-posts ul li {
   position: relative;
   padding-left: 17px;
   margin-bottom: 10px;
 }
 
-.recent-posts ul li:before, .archive-posts ul li:before {
+.recent-posts ul li:before,
+.archive-posts ul li:before {
   position: absolute;
   left: 0;
   top: 2px;

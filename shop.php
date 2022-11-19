@@ -1,6 +1,7 @@
 <?php
 $title = 'Cửa hàng';
 require_once 'includes/header.php';
+require_once 'functions/handleCurrency.php';
 ?>
 
 <!-- breadcrumb-section -->
@@ -9,8 +10,7 @@ require_once 'includes/header.php';
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="breadcrumb-text">
-					<p>Fresh and Organic</p>
-					<h1>Shop</h1>
+					<h1>Tươi mới và giàu hữu cơ</h1>
 				</div>
 			</div>
 		</div>
@@ -27,75 +27,48 @@ require_once 'includes/header.php';
 				<div class="product-filters">
 					<ul>
 						<li class="active" data-filter="*">All</li>
-						<li data-filter=".strawberry">Strawberry</li>
-						<li data-filter=".berry">Berry</li>
-						<li data-filter=".lemon">Lemon</li>
+						<?php
+						require_once 'classes/db.php';
+
+						$query = "SELECT * FROM categories";
+						$query_run = Database::getInstance()->query($query);
+
+						if ($query_run->num_rows > 0) {
+							foreach ($query_run as $each) {
+								$name = explode(" ", $each['name']);
+								$filter = implode("-", $name);
+						?>
+								<li data-filter=".<?php echo $filter ?>"><?php echo $each['name'] ?></li>
+						<?php }
+						} ?>
 					</ul>
 				</div>
 			</div>
 		</div>
 
 		<div class="row product-lists">
-			<div class="col-lg-4 col-md-6 text-center strawberry">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+			<?php
+			$query = "SELECT products.*, categories.name as category_name FROM products, categories WHERE products.category_id = categories.id";
+			$query_run = Database::getInstance()->query($query);
+
+			if ($query_run->num_rows > 0) {
+				foreach ($query_run as $each) {
+					$name = explode(" ", $each['category_name']);
+					$filter = implode("-", $name);
+			?>
+					<div class="col-lg-4 col-md-6 text-center <?php echo $filter ?>">
+						<div class="single-product-item">
+							<div class="product-image single-product-image">
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?> "></a>
+							</div>
+							<h3><?php echo $each['name'] ?></h3>
+							<p class="product-price d-flex"><?php echo handleCurrency($each['price']) ?></p>
+
+							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+						</div>
 					</div>
-					<h3>Strawberry</h3>
-					<p class="product-price"><span>Per Kg</span> 85$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center berry">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-					</div>
-					<h3>Berry</h3>
-					<p class="product-price"><span>Per Kg</span> 70$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center lemon">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-					</div>
-					<h3>Lemon</h3>
-					<p class="product-price"><span>Per Kg</span> 35$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-4.jpg" alt=""></a>
-					</div>
-					<h3>Avocado</h3>
-					<p class="product-price"><span>Per Kg</span> 50$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-5.jpg" alt=""></a>
-					</div>
-					<h3>Green Apple</h3>
-					<p class="product-price"><span>Per Kg</span> 45$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center strawberry">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-6.jpg" alt=""></a>
-					</div>
-					<h3>Strawberry</h3>
-					<p class="product-price"><span>Per Kg</span> 80$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
+			<?php }
+			} ?>
 		</div>
 
 		<div class="row">
@@ -144,3 +117,4 @@ require_once 'includes/header.php';
 <!-- end logo carousel -->
 
 <?php require_once 'includes/footer.php'; ?>
+<script src="/assets/js/ajax/ajaxAddToCart.js"></script>

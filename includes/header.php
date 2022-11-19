@@ -16,21 +16,21 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- fontawesome -->
-    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/all.min.css">
     <!-- bootstrap -->
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <!-- owl carousel -->
-    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/owl.carousel.css">
     <!-- magnific popup -->
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/magnific-popup.css">
     <!-- animate css -->
-    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
     <!-- mean menu css -->
-    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="/assets/css/meanmenu.min.css">
     <!-- main style -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
     <!-- responsive -->
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
 
 </head>
 
@@ -52,7 +52,7 @@
                     <div class="main-menu-wrap">
                         <!-- logo -->
                         <div class="site-logo">
-                            <a href="/frutika">
+                            <a href="/">
                                 <img src="assets/img/logo.png" alt="">
                             </a>
                         </div>
@@ -62,24 +62,25 @@
                         <nav class="main-menu">
                             <ul>
                                 <li class="current-list-item">
-                                    <a href="/frutika">Trang chủ</a>
+                                    <a href="/">Trang chủ</a>
                                 </li>
                                 <li>
-                                    <a href="/frutika/shop.php">Cửa hàng</a>
+                                    <a href="/shop.php">Cửa hàng</a>
                                 </li>
-                                <li><a href="/frutika/news.php">Bài viết</a>
+                                <li><a href="/news.php">Bài viết</a>
                                     <ul class="sub-menu">
                                         <li><a href="single-news.html">Single News</a></li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="/frutika/contact.php">Liên hệ</a>
+                                    <a href="/contact.php">Liên hệ</a>
                                 </li>
-                                <li><a href="/frutika/about.php">Giới thiệu</a></li>
+                                <li><a href="/about.php">Giới thiệu</a></li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="shopping-cart" href="/cart.php"><i class="fas fa-shopping-cart"></i></a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        <a class="account-icon" href="/login-register.php"><i class="fas fa-user"></i></a>
                                     </div>
                                 </li>
                             </ul>
@@ -102,9 +103,9 @@
                     <span class="close-btn"><i class="fas fa-window-close"></i></span>
                     <div class="search-bar">
                         <div class="search-bar-tablecell">
-                            <h3>Search For:</h3>
-                            <input type="text" placeholder="Keywords">
-                            <button type="submit">Search <i class="fas fa-search"></i></button>
+                            <h3>Hôm nay bạn muốn ăn trái cây gì?</h3>
+                            <input type="text" placeholder="nhập tên trái cây">
+                            <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </div>

@@ -1,15 +1,14 @@
 <?php
-session_start();
 $title = 'Giỏ hàng';
 require_once 'includes/header.php';
 require_once 'functions/handleCurrency.php';
 
 $cart = null;
-if ($_SESSION['cart']) {
+if (isset($_SESSION['cart'])) {
 	$cart = $_SESSION['cart'];
 }
 $sum = 0;
-
+$shipping = 20000;
 ?>
 
 <!-- breadcrumb-section -->
@@ -18,7 +17,6 @@ $sum = 0;
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="breadcrumb-text">
-					<p>Tươi mới vả giàu hữu cơ</p>
 					<h1>Giỏ hàng</h1>
 				</div>
 			</div>
@@ -49,7 +47,7 @@ $sum = 0;
 							if ($cart != null) {
 								foreach ($cart as $id => $each) { ?>
 									<tr class="table-body-row">
-										<td class="product-remove"><a href="#"><i class="far fa-window-close"></i></a></td>
+										<td class="product-remove"><button class="btn-delete" data-id="<?php echo $id ?>"><i class="far fa-window-close"></i></button></td>
 										<td class="product-image product-image-cart"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>" height=100 /></td>
 										<td class="product-name"><?php echo $each['name'] ?></td>
 										<td class="product-price"><span class="span-price"><?php echo handleCurrency($each['price']) ?></span></td>
@@ -85,31 +83,31 @@ $sum = 0;
 					<table class="total-table">
 						<thead class="total-table-head">
 							<tr class="table-total-row">
-								<th>Total</th>
-								<th>Price</th>
+								<th>Mục</th>
+								<th>Giá</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="total-data">
-								<td><strong>Subtotal: </strong></td>
-								<td>$500</td>
+								<td><strong>Tổng tiền: </strong></td>
+								<td id="span-total"><?php echo handleCurrency($sum) ?></td>
 							</tr>
 							<tr class="total-data">
-								<td><strong>Shipping: </strong></td>
-								<td>$45</td>
+								<td><strong>Phí ship: </strong></td>
+								<td><?php echo handleCurrency($shipping) ?></td>
 							</tr>
 							<tr class="total-data">
-								<td><strong>Total: </strong></td>
-								<td>$545</td>
+								<td><strong>Thanh toán: </strong></td>
+								<td id="span-payment"><?php echo handleCurrency($sum + $shipping) ?></td>
 							</tr>
 						</tbody>
 					</table>
 					<div class="cart-buttons">
-						<a href="checkout.html" class="boxed-btn black">Đặt hàng</a>
+						<a href="/checkout.php" class="boxed-btn black">Mua hàng</a>
 					</div>
 				</div>
 
-				<div class="coupon-section">
+				<!-- <div class="coupon-section">
 					<h3>Apply Coupon</h3>
 					<div class="coupon-form-wrap">
 						<form action="index.html">
@@ -117,7 +115,7 @@ $sum = 0;
 							<p><input type="submit" value="Apply"></p>
 						</form>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

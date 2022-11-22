@@ -90,8 +90,8 @@ require_once 'includes/header.php';
 				foreach ($query_run as $each) { ?>
 					<div class="col-lg-4 col-md-6 text-center">
 						<div class="single-product-item">
-							<div class="product-image">
-								<a href=""><img src="admin/uploads/fruits/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
+							<div class="product-image single-product-image">
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
 							</div>
 							<h3><?php echo $each['name'] ?></h3>
 							<p class="product-price"><?php echo number_format($each['price'], 0, '', '.') ?></p>
@@ -266,33 +266,5 @@ require_once 'includes/header.php';
 	</div>
 </div>
 <!-- end latest news -->
-
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="logo-carousel-inner">
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/1.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/2.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/3.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/4.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end logo carousel -->
 
 <?php require_once 'includes/footer.php'; ?>

@@ -9,7 +9,9 @@ $(document).ready(function () {
       },
       success: function (response) {
         const res = jQuery.parseJSON(response);
-        if (res.status == 201) {
+        if (res.status == 200) {
+          Swal.fire("Thành công", res.message, "success");
+        } else {
           toastr.options.escapeHtml = true;
 
           Command: toastr["error"](res.message, "Lỗi");
@@ -31,8 +33,6 @@ $(document).ready(function () {
             showMethod: "fadeIn",
             hideMethod: "fadeOut",
           };
-        } else if (res.status == 200) {
-          Swal.fire("Thành công", res.message, "success");
         }
       },
     });

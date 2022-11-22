@@ -68,40 +68,60 @@ form.sign-in-form {
   margin-bottom: 10px;
 }
 
+.field-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+}
 .input-field {
-  max-width: 380px;
+  display: block;
   width: 100%;
   background-color: #f0f0f0;
   margin: 10px 0;
-  height: 55px;
   border-radius: 55px;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
-  position: relative;
-}
-
-.input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #acacac;
-  transition: 0.5s;
-  font-size: 1.1rem;
-}
-
-.input-field input {
-  background: none;
+  padding: 20px 10px;
   outline: none;
   border: none;
-  line-height: 1;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #333;
+  font-size: 1rem;
+}
+.toggle-password{
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
 }
 
-.input-field input::placeholder {
+.eye-open {
+  display: none;
+}
+.eye-open.is-active {
+  display: block;
+}
+.eye-open.is-active + .eye-close {
+  display: none;
+}
+
+label.error {
+  position: absolute;
+  bottom: -33%;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  color: red;
+}
+
+.input-field::placeholder {
   color: #aaa;
   font-weight: 500;
+}
+.remember-group {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.remember-group span {
+  margin-left: 5px;
 }
 
 .social-text {

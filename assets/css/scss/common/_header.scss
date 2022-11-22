@@ -4,7 +4,8 @@
 
 ----------------------------------------------------------------------------- */
 ul.navbar-nav li.nav-item {
-  a.nav-link, &.active a.nav-link {
+  a.nav-link,
+  &.active a.nav-link {
     color: $text-color;
   }
 }
@@ -16,14 +17,16 @@ ul.navbar-nav li.nav-item {
   padding: 25px 0;
 
   &.white ul.navbar-nav li.nav-item {
-    a.nav-link, &.active a.nav-link {
+    a.nav-link,
+    &.active a.nav-link {
       color: $white-color;
     }
   }
 }
 
 ul.navbar-nav li.nav-item {
-  a.nav-link, &.active a.nav-link {
+  a.nav-link,
+  &.active a.nav-link {
     color: $white-color;
     font-weight: 700;
     margin-right: 14px;
@@ -155,11 +158,45 @@ ul.sub-menu li:last-child {
 nav.mean-nav > ul > li:first-child > a {
   border-top: none;
 }
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  a {
+    color: $white-color;
+    display: inline-block;
+    padding: 10px;
+  }
+}
+.user-menu {
+  position: relative;
+  &--name {
+    color: #fff;
+  }
+  &:hover &__item {
+    display: flex;
+  }
+}
+.user-menu__item {
+  position: absolute;
+  right: -50%;
 
-.header-icons a {
-  color: $white-color;
-  display: inline-block;
-  padding: 10px;
+  width: 250px;
+  display: none;
+  flex-direction: column;
+
+  background-color: #fff;
+  li {
+    &:not(:last-child) {
+      border-bottom: 1px solid #eee;
+    }
+    &:hover {
+      background-color: $primary-color;
+    }
+    a {
+      color: #333 !important;
+    }
+  }
 }
 
 .site-logo {
@@ -167,7 +204,8 @@ nav.mean-nav > ul > li:first-child > a {
 }
 
 .top-header-area.sepherate-header {
-  ul li > a, .header-icons a {
+  ul li > a,
+  .header-icons a {
     color: $text-color;
   }
 }
@@ -290,7 +328,7 @@ a.mobile-show {
     color: $white-color;
   }
 
-  button[type=submit] {
+  button[type="submit"] {
     border: none;
     background-color: $primary-color;
     padding: 15px 30px;
@@ -304,7 +342,7 @@ a.mobile-show {
     color: $white-color;
   }
 
-  button[type=submit] i {
+  button[type="submit"] i {
     margin-left: 5px;
   }
 }

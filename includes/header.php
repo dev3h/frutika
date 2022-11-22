@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,10 +68,8 @@
                                 <li>
                                     <a href="/shop.php">Cửa hàng</a>
                                 </li>
-                                <li><a href="/news.php">Bài viết</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="single-news.html">Single News</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="/news.php">Bài viết</a>
                                 </li>
                                 <li>
                                     <a href="/contact.php">Liên hệ</a>
@@ -78,9 +77,27 @@
                                 <li><a href="/about.php">Giới thiệu</a></li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" href="/cart.php"><i class="fas fa-shopping-cart"></i></a>
+                                        <a class="shopping-cart" <?php 
+                                        if(isset($_SESSION['id'])){
+                                            echo 'href="/cart.php"';
+                                        }else{
+                                            echo 'href="/login-register"';
+                                        }
+                                        ?>
+                                        ><i class="fas fa-shopping-cart"></i></a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-                                        <a class="account-icon" href="/login-register.php"><i class="fas fa-user"></i></a>
+                                        <?php
+                                        if (isset($_SESSION['id'])) { ?>
+                                            <div class="user-menu">
+                                                <span class="user-menu--name"><?php echo $_SESSION['name'] ?></span>
+                                                <ul class="user-menu__item">
+                                                    <li><a href="">Tài khoản</a></li>
+                                                    <li><a href="/logout.php">Đăng xuất</a></li>
+                                                </ul>
+                                            </div>
+                                        <?php } else { ?>
+                                            <a class="account-icon" href="/login-register"><i class="fas fa-user"></i></a>
+                                        <?php } ?>
                                     </div>
                                 </li>
                             </ul>

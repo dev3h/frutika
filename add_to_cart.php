@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+if(!isset($_SESSION['id'])) {
+    header('location: login-register');
+    exit;
+}
 require_once './classes/db.php';
 $conn = Database::getConnection();
 
@@ -28,6 +33,7 @@ if (empty($_SESSION['cart'][$id])) {
     $res = [
         'status' => 200,
         'message' => "Thêm thành công " . $name . ' vào giỏ hàng',
+        'data' => sizeof($_SESSION['cart'])
     ];
 } else {
     $_SESSION['cart'][$id]['quantity']++;

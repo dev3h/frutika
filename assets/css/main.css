@@ -624,6 +624,23 @@ nav.mean-nav > ul > li:first-child > a {
   padding: 10px;
 }
 
+.cart-nums {
+  position: relative;
+}
+.cart-nums span {
+  color: #000;
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  line-height: 1;
+  display: block;
+  top: 9px;
+  right: 4px;
+  padding: 4px;
+  font-size: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
 .user-menu {
   position: relative;
 }
@@ -2498,6 +2515,44 @@ table.order-details tbody td {
   display: table-cell;
   vertical-align: middle;
   width: 100%;
+}
+
+.single-pro-review-area {
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.profile-img .image-container {
+  width: 100px;
+  height: 100px;
+}
+.profile-img .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.form-group-inner {
+  margin-bottom: 15px;
+}
+.form-group-inner label {
+  font-size: 14px;
+  color: #303030;
+  font-weight: bold;
+}
+
+.form-group-inner input[type=email],
+.form-group-inner input[type=password],
+.form-group-inner input[type=text],
+.form-select-list .custom-select-value {
+  font-size: 14px;
+  color: #303030;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 20px 10px;
 }
 
 /*# sourceMappingURL=main.css.map */

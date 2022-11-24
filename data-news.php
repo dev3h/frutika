@@ -31,7 +31,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
             <div class="single-latest-news">
                 <a href="./post/<?php echo $result[$i]['url'] ?>.html">
                     <div class="latest-news-bg">
-                        <img src="/admin/uploads/posts/<?php echo $result[$i]['photo'] ?>" alt="frutica-<?php echo $result[$i]['title'] ?>" style="width: 100%; height: 100%; object-fit: cover" />
+                        <img src="/admin/assets/uploads/news/<?php echo $result[$i]['photo'] ?>" alt="frutica-<?php echo $result[$i]['title'] ?>" style="width: 100%; height: 100%; object-fit: cover" />
                     </div>
                 </a>
                 <div class="news-text-box">

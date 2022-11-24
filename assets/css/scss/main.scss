@@ -3,7 +3,6 @@
 @import "base/mixins";
 @import "base/typography";
 
-
 // Common
 @import "common/common";
 @import "common/header";
@@ -19,9 +18,9 @@
 @import "sections/about";
 @import "sections/shop-banner";
 
-
 // Pages
 @import "pages/about";
 @import "pages/contact";
 @import "pages/shop";
 @import "pages/404";
+@import "pages/profile";

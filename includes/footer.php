@@ -96,6 +96,8 @@
  <script src="/assets/js/sweetalert2@11.js"></script>
  <!-- toastr JS-->
  <script src="/assets/js/toastr.min.js"></script>
+ <!-- jquery validate -->
+ <script src="/assets/js/jquery.validate.min.js"></script>
 
  </body>
 

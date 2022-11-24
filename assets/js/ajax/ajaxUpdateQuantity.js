@@ -10,9 +10,12 @@ $(document).ready(function () {
         id,
         type,
       },
-    }).done(function () {
+    }).done(function (response) {
+      const res = jQuery.parseJSON(response);
+      const cartQuantity = $("#cart-quantity");
       let parent_tr = btn.parents("tr");
       let price = parent_tr.find(".span-price").text();
+
       price = price.replace(".", "");
       let quantity = parent_tr.find(".span-quantity").text();
       if (type == 1) {
@@ -24,6 +27,7 @@ $(document).ready(function () {
       if (quantity === 0) {
         parent_tr.remove();
       } else {
+        console.log(parent_tr.find(".span-quantity"));
         parent_tr.find(".span-quantity").text(quantity);
         let sum = price * quantity;
 
@@ -34,6 +38,9 @@ $(document).ready(function () {
         parent_tr.find(".span-sum").text(sum);
       }
       getTotal();
+      if (res.data != null) {
+        $.trim(cartQuantity.text(res.data));
+      }
     });
   });
   $(".btn-delete").click(function () {
@@ -45,9 +52,14 @@ $(document).ready(function () {
       data: {
         id,
       },
-    }).done(function () {
+    }).done(function (response) {
+      const res = jQuery.parseJSON(response);
+      const cartQuantity = $("#cart-quantity");
       btn.parents("tr").remove();
       getTotal();
+      if (res.data != null) {
+        $.trim(cartQuantity.text(res.data));
+      }
     });
   });
 });

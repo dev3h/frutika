@@ -14,4 +14,8 @@ if ($type == '0') {
 } else {
     $_SESSION['cart'][$id]['quantity']++;
 }
-
+$res = [
+    'data' => sizeof($_SESSION['cart']),
+];
+echo json_encode($res);
+return false;

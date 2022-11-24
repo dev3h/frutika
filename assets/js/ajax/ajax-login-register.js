@@ -141,7 +141,7 @@ $(document).ready(function () {
             };
           } else if (res.status == 200) {
             $(".sign-up-form")[0].reset();
-            window.location.href = "/login-register";
+            window.location.href = "/profile.php";
           }
         },
       });

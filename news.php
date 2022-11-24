@@ -30,7 +30,7 @@ require_once 'includes/header.php';
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
-						<a href="#" class="cart-btn" id="load_more">Hiển thị thêm</a>
+						<button class="cart-btn" id="load_more">Hiển thị thêm</button>
 					</div>
 				</div>
 			</div>
@@ -39,33 +39,5 @@ require_once 'includes/header.php';
 </div>
 <!-- end latest news -->
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="logo-carousel-inner">
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/1.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/2.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/3.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/4.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end logo carousel -->
-
 <?php require_once 'includes/footer.php'; ?>
-<script src="/assets/js/load-more.js"></script>
+<script src="/assets/js/ajax/ajaxLoadMore.js"></script>

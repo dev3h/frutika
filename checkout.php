@@ -51,21 +51,19 @@ $shipping = 20000;
 										$result = Database::getInstance()->query($sql);
 										$each = $result->fetch_assoc();
 
-
-
 										?>
 										<form method="post" id="payment-form">
 											<p>
 												<label>Tên người nhận <span>*</span></label>
-												<input type="text" name="name_receiver" value="<?php echo $each['name'] ?>">
+												<input type="text" name="name_receiver" placeholder="tên người nhận" value="<?php echo $each['name'] ?>">
 											</p>
 											<p>
 												<label>Số điện thoại người nhận<span>*</span></label>
-												<input type="text" name="phone_receiver" value="<?php echo $each['phone_number'] ?>">
+												<input type="text" name="phone_receiver" placeholder="sđt người nhận" value="<?php echo $each['phone_number'] ?>">
 											</p>
 											<p>
-												<label>Địa chỉ người nhận<span>*</span></label>
-												<input type="text" name="address_receiver" value="<?php echo $each['address'] ?>">
+												<label>Địa chỉ nhận hàng<span>*</span></label>
+												<input type="text" name="address_receiver" placeholder="địa chỉ nhận hàng" value="<?php echo $each['address'] ?>">
 											</p>
 											<button class="cart-btn">Đặt hàng</button>
 										</form>
@@ -143,3 +141,4 @@ $shipping = 20000;
 <!-- end check out section -->
 
 <?php require_once 'includes/footer.php'; ?>
+<script src="/assets/js/ajax/ajaxCheckOut.js"></script>

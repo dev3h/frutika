@@ -8,8 +8,8 @@ function createToken($id) {
     $token = uniqid('user_', true);
     $sql = "UPDATE customers SET token = '$token' WHERE id='$id'";
     Database::getInstance()->query($sql);
-    // setcookie('remember', $token, time() + 60 * 60 * 24 * 15);
-    $_SESSION['token'] = $token;
+    setcookie('remember', $token, time() + 60 * 60 * 24 * 30);
+    // $_SESSION['token'] = $token;
 }
 
 if (isset($_POST['login'])) {

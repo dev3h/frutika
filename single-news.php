@@ -39,7 +39,7 @@ require_once 'includes/header.php';
 						}
 						?>
 						<div class="single-artcile-bg">
-							<img src="/admin/uploads/posts/<?php echo $each['photo'] ?>" alt="frutika-news-<?php echo $each['title'] ?>" style="width: 100%; height: 100%; object-fit: cover">
+							<img src="/admin/assets/uploads/news/<?php echo $each['photo'] ?>" alt="frutika-news-<?php echo $each['title'] ?>" style="width: 100%; height: 100%; object-fit: cover">
 						</div>
 						<p class="blog-meta">
 							<span class="author"><i class="fas fa-user"></i> Admin</span>
@@ -137,32 +137,5 @@ require_once 'includes/header.php';
 </div>
 <!-- end single article section -->
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="logo-carousel-inner">
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/1.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/2.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/3.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/4.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end logo carousel -->
 
 <?php require_once 'includes/footer.php'; ?>

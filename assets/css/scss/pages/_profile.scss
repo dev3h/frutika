@@ -1,0 +1,36 @@
+.single-pro-review-area {
+  padding: 20px;
+  margin-top: 30px;
+}
+.profile-img {
+  .image-container {
+    width: 100px;
+    height: 100px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+}
+.form-group-inner {
+  margin-bottom: 15px;
+  & label {
+    font-size: 14px;
+    color: #303030;
+    font-weight: bold;
+  }
+}
+.form-group-inner input[type="email"],
+.form-group-inner input[type="password"],
+.form-group-inner input[type="text"],
+.form-select-list .custom-select-value {
+  font-size: 14px;
+  color: #303030;
+  border: 1px solid #ddd;
+  outline: none;
+  border-radius: 0px;
+  box-shadow: none;
+  padding: 20px 10px;
+}

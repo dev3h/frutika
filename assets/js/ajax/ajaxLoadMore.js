@@ -27,15 +27,13 @@ $(document).ready(function () {
       data: { page },
       success: function (result) {
         var html = "";
-
-        if (result.length <= record_per_page) {
-          $.each(result, function (key, obj) {
-            html += `
-            <div class="col-lg-4 col-md-6">
+        const getNewsCard = (obj) => {
+          return `
+        <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
                     <a href="./post/${obj.url}.html">
                         <div class="latest-news-bg">
-                            <img src="/admin/uploads/posts/${obj.photo}" alt="frutica-${obj.title}" style="width: 100%; height: 100%; object-fit: cover" />
+                            <img src="/admin/assets/uploads/news/${obj.photo}" alt="frutica-${obj.title}" style="width: 100%; height: 100%; object-fit: cover" />
                         </div>
                     </a>
                     <div class="news-text-box">
@@ -49,7 +47,12 @@ $(document).ready(function () {
                     </div>
                 </div>
              </div>
-            `;
+        `;
+        };
+
+        if (result.length <= record_per_page) {
+          $.each(result, function (key, obj) {
+            html += getNewsCard(obj);
           });
 
           $element.append(html);
@@ -59,26 +62,7 @@ $(document).ready(function () {
         } else {
           $.each(result, function (key, obj) {
             if (key < result.length - 1) {
-              html += `
-             <div class="col-lg-4 col-md-6">
-                <div class="single-latest-news">
-                    <a href="./post/${obj.url}.html">
-                        <div class="latest-news-bg">
-                            <img src="/admin/uploads/posts/${obj.photo}" alt="frutica-${obj.title}" style="width: 100%; height: 100%; object-fit: cover" />
-                        </div>
-                    </a>
-                    <div class="news-text-box">
-                        <h3><a href="./post/${obj.url}.html">${obj.title}</a></h3>
-                        <p class="blog-meta">
-                            <span class="author"><i class="fas fa-user"></i> Admin</span>
-                            <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                        <a href="./post/${obj.url}.html" class="read-more-btn">đọc thêm <i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-             </div>
-              `;
+              html += getNewsCard(obj);
             }
           });
 

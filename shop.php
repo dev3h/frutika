@@ -10,7 +10,7 @@ require_once 'functions/handleCurrency.php';
 		<div class="row">
 			<div class="col-lg-8 offset-lg-2 text-center">
 				<div class="breadcrumb-text">
-					<h1>Tươi mới và giàu hữu cơ</h1>
+					<h1>Cửa hàng</h1>
 				</div>
 			</div>
 		</div>
@@ -59,7 +59,7 @@ require_once 'functions/handleCurrency.php';
 					<div class="col-lg-4 col-md-6 text-center <?php echo $filter ?>">
 						<div class="single-product-item">
 							<div class="product-image single-product-image">
-								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?> "></a>
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?> "></a>
 							</div>
 							<h3><?php echo $each['name'] ?></h3>
 							<p class="product-price d-flex"><?php echo handleCurrency($each['price']) ?></p>
@@ -88,33 +88,6 @@ require_once 'functions/handleCurrency.php';
 </div>
 <!-- end products -->
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="logo-carousel-inner">
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/1.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/2.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/3.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/4.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end logo carousel -->
 
 <?php require_once 'includes/footer.php'; ?>
 <script src="/assets/js/ajax/ajaxAddToCart.js"></script>

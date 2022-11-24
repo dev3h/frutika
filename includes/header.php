@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="/assets/css/responsive.css">
+    <!-- toastr -->
+    <link rel="stylesheet" href="/assets/css/toastr.min.css">
 
 </head>
 
@@ -77,21 +79,35 @@
                                 <li><a href="/about.php">Giới thiệu</a></li>
                                 <li>
                                     <div class="header-icons">
-                                        <a class="shopping-cart" <?php 
-                                        if(isset($_SESSION['id'])){
-                                            echo 'href="/cart.php"';
-                                        }else{
-                                            echo 'href="/login-register"';
-                                        }
-                                        ?>
-                                        ><i class="fas fa-shopping-cart"></i></a>
+                                        <div class="cart-nums">
+                                            <a class="shopping-cart" <?php
+                                                                        if (isset($_SESSION['id'])) {
+                                                                            echo 'href="/cart.php"';
+                                                                        } else {
+                                                                            echo 'href="/login-register"';
+                                                                        }
+                                                                        ?>><i class="fas fa-shopping-cart"></i>
+                                            </a>
+                                            <?php
+                                            if (isset($_SESSION['id'])) { ?>
+                                                <span id="cart-quantity">
+                                                    <?php 
+                                                    if (isset($_SESSION['cart'])) { 
+                                                        echo sizeof($_SESSION['cart']);
+                                                    } else {
+                                                        echo 0;
+                                                    }
+                                                    ?>
+                                                </span>
+                                            <?php } ?>
+                                        </div>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
                                         <?php
                                         if (isset($_SESSION['id'])) { ?>
                                             <div class="user-menu">
                                                 <span class="user-menu--name"><?php echo $_SESSION['name'] ?></span>
                                                 <ul class="user-menu__item">
-                                                    <li><a href="">Tài khoản</a></li>
+                                                    <li><a href="/profile.php">Tài khoản</a></li>
                                                     <li><a href="/logout.php">Đăng xuất</a></li>
                                                 </ul>
                                             </div>

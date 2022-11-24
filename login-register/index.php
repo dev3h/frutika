@@ -1,19 +1,8 @@
 <?php
 require_once '../classes/db.php';
 
-// if (isset($_COOKIE['remember'])) {
-//     $token = $_COOKIE['remember'];
-//     $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
-//     $result = Database::getInstance()->query($sql);
-
-//     if ($result->num_rows == 1) {
-//         $each = $result->fetch_assoc();
-//         $_SESSION['id'] = $each['id'];
-//         $_SESSION['name'] = $each['name'];
-//     }
-// }
-if (isset($_SESSION['token'])) {
-    $token = $_SESSION['token'];
+if (isset($_COOKIE['remember'])) {
+    $token = $_COOKIE['remember'];
     $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
     $result = Database::getInstance()->query($sql);
 
@@ -23,8 +12,20 @@ if (isset($_SESSION['token'])) {
         $_SESSION['name'] = $each['name'];
     }
 }
+// if (isset($_SESSION['token'])) {
+//     $token = $_SESSION['token'];
+//     $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
+//     $result = Database::getInstance()->query($sql);
+
+//     if ($result->num_rows == 1) {
+//         $each = $result->fetch_assoc();
+//         $_SESSION['id'] = $each['id'];
+//         $_SESSION['name'] = $each['name'];
+//     }
+// }
+
 if (isset($_SESSION['id'])) {
-    header('location: /index.php');
+    header('location: /profile.php');
     exit;
 }
 ?>
@@ -34,7 +35,7 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign in & Sign up Form</title>
+    <title>Đăng ký đăng nhập</title>
     <link rel="stylesheet" href="/assets/css/all.min.css">
     <link rel="stylesheet" href="/assets/css/login-register.css" />
     <link rel="stylesheet" href="/assets/css/toastr.min.css" />

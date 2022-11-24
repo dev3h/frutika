@@ -48,7 +48,7 @@ $shipping = 20000;
 								foreach ($cart as $id => $each) { ?>
 									<tr class="table-body-row">
 										<td class="product-remove"><button class="btn-delete" data-id="<?php echo $id ?>"><i class="far fa-window-close"></i></button></td>
-										<td class="product-image product-image-cart"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>" height=100 /></td>
+										<td class="product-image product-image-cart"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>" height=100 /></td>
 										<td class="product-name"><?php echo $each['name'] ?></td>
 										<td class="product-price"><span class="span-price"><?php echo handleCurrency($each['price']) ?></span></td>
 										<td class="product-quantity"><button class="btn-update-quantity" data-id="<?php echo $id ?>" data-type='0'>-</button>

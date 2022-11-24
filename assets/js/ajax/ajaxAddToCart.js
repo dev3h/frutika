@@ -9,7 +9,11 @@ $(document).ready(function () {
       },
       success: function (response) {
         const res = jQuery.parseJSON(response);
+        const cartQuantity = $("#cart-quantity");
         if (res.status == 200) {
+          if (res.data != null) {
+            $.trim(cartQuantity.text(res.data));
+          }
           Swal.fire("Thành công", res.message, "success");
         } else {
           toastr.options.escapeHtml = true;

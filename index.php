@@ -91,11 +91,11 @@ require_once 'includes/header.php';
 					<div class="col-lg-4 col-md-6 text-center">
 						<div class="single-product-item">
 							<div class="product-image single-product-image">
-								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
 							</div>
 							<h3><?php echo $each['name'] ?></h3>
 							<p class="product-price"><?php echo number_format($each['price'], 0, '', '.') ?></p>
-							<a href="" class="cart-btn"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
 						</div>
 					</div>
 			<?php }
@@ -144,7 +144,7 @@ require_once 'includes/header.php';
 						</div>
 					</div>
 				</div>
-				<a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+				<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
 			</div>
 		</div>
 	</div>
@@ -268,3 +268,4 @@ require_once 'includes/header.php';
 <!-- end latest news -->
 
 <?php require_once 'includes/footer.php'; ?>
+<script src="/assets/js/ajax/ajaxAddToCart.js"></script>

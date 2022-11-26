@@ -35,6 +35,12 @@
 .single-product-item {
   margin-bottom: 30px;
 }
+.single-product-img {
+  background-color: $primary-color;
+  img {
+    width: 100%;
+  }
+}
 
 .product-image .product-image-link {
   display: flex;

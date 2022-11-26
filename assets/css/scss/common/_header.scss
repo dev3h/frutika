@@ -161,7 +161,7 @@ nav.mean-nav > ul > li:first-child > a {
 .header-icons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 25px;
   a {
     color: $white-color;
     display: inline-block;
@@ -283,7 +283,23 @@ nav.main-menu {
 ul.navbar-nav {
   margin: 0 auto;
 }
-
+.search-bar-icon {
+  position: relative;
+  cursor: pointer;
+  .icon-search {
+    color: #fff;
+  }
+  .search-bar-container {
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    right: 0;
+    display: none;
+  }
+  .search-bar-container.show {
+    transition: all 0.3s ease-in-out;
+    display: block;
+  }
+}
 //Searchbar
 .search-area {
   position: fixed;

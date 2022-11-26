@@ -30,7 +30,7 @@ $each = $result->fetch_assoc();
 		<div class="row">
 			<div class="col-md-5">
 				<div class="single-product-img">
-					<img src="/admin/uploads/fruits/<?php echo $each['photo'] ?>" alt="frutikha-<?php echo $each['name'] ?>">
+					<img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha-<?php echo $each['name'] ?>">
 				</div>
 			</div>
 			<div class="col-md-7">
@@ -39,13 +39,13 @@ $each = $result->fetch_assoc();
 					<p class="single-product-pricing d-flex"><?php echo number_format($each['price'], 0, '', '.') ?></p>
 					<p><?php echo $each['short_description'] ?></p>
 					<div class="single-product-form">
-						<form action="index.html">
-							<input type="number" placeholder="0">
+						<form method="post" id="single-product-form">
+							<input type="number" placeholder="1" class="quantityProduct">
+							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
 						</form>
-						<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
 						<p><strong>Thẻ: </strong>Trái cây, dưa hấu</p>
 					</div>
-					<h4>Share:</h4>
+					<h4>Chia sẻ:</h4>
 					<ul class="product-share">
 						<li><a href=""><i class="fab fa-facebook-f"></i></a></li>
 						<li><a href=""><i class="fab fa-twitter"></i></a></li>
@@ -71,67 +71,30 @@ $each = $result->fetch_assoc();
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+			<?php
+			require_once 'classes/db.php';
+			$query = "SELECT * FROM products WHERE category_id='" . $each['category_id'] . "' AND NOT id='" . $each['id'] . "'ORDER BY RAND() LIMIT 3";
+			$query_run = Database::getInstance()->query($query);
+
+			if ($query_run->num_rows > 0) {
+				foreach ($query_run as $each) { ?>
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item single-product-container">
+							<div class="product-image single-product-image">
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
+							</div>
+							<h3><?php echo $each['name'] ?></h3>
+							<p class="product-price"><?php echo number_format($each['price'], 0, '', '.') ?></p>
+							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+						</div>
 					</div>
-					<h3>Strawberry</h3>
-					<p class="product-price"><span>Per Kg</span> 85$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-					</div>
-					<h3>Berry</h3>
-					<p class="product-price"><span>Per Kg</span> 70$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 offset-lg-0 offset-md-3 text-center">
-				<div class="single-product-item">
-					<div class="product-image">
-						<a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-					</div>
-					<h3>Lemon</h3>
-					<p class="product-price"><span>Per Kg</span> 35$ </p>
-					<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-				</div>
-			</div>
+			<?php }
+			} ?>
 		</div>
 	</div>
 </div>
 <!-- end more products -->
 
-<!-- logo carousel -->
-<div class="logo-carousel-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="logo-carousel-inner">
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/1.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/2.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/3.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/4.png" alt="">
-					</div>
-					<div class="single-logo-item">
-						<img src="assets/img/company-logos/5.png" alt="">
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- end logo carousel -->
 
 <?php require_once 'includes/footer.php' ?>
+<script src="/assets/js/ajax/ajaxAddToCart.js"></script>

@@ -34,7 +34,8 @@
     <link rel="stylesheet" href="/assets/css/responsive.css">
     <!-- toastr -->
     <link rel="stylesheet" href="/assets/css/toastr.min.css">
-
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
 </head>
 
 <body>
@@ -91,8 +92,8 @@
                                             <?php
                                             if (isset($_SESSION['id'])) { ?>
                                                 <span id="cart-quantity">
-                                                    <?php 
-                                                    if (isset($_SESSION['cart'])) { 
+                                                    <?php
+                                                    if (isset($_SESSION['cart'])) {
                                                         echo sizeof($_SESSION['cart']);
                                                     } else {
                                                         echo 0;
@@ -101,7 +102,15 @@
                                                 </span>
                                             <?php } ?>
                                         </div>
-                                        <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        <div class="mobile-hide search-bar-icon">
+                                            <i class="fas fa-search icon-search"></i>
+                                            <div class="ui-widget search-bar-container">
+                                                <!-- <img id="project-icon" height="200" src="images/transparent_1x1.png" class="ui-state-default" alt /> -->
+                                                <input id="project" />
+                                                <input type="hidden" id="project-id" />
+                                                <p id="project-description"></p>
+                                            </div>
+                                        </div>
                                         <?php
                                         if (isset($_SESSION['id'])) { ?>
                                             <div class="user-menu">
@@ -129,7 +138,7 @@
     <!-- end header -->
 
     <!-- search area -->
-    <div class="search-area">
+    <!-- <div class="search-area">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -144,5 +153,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- end search area -->

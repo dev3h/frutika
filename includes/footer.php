@@ -98,7 +98,10 @@
  <script src="/assets/js/toastr.min.js"></script>
  <!-- jquery validate -->
  <script src="/assets/js/jquery.validate.min.js"></script>
-
+ <!-- jquery ui -->
+ <script src="/assets/js/jquery-ui.min.js"></script>
+ <script src="/assets/js/toggleSearchBar.js"></script>
+ <script src="/assets/js/ajax/ajaxLiveSearch.js"></script>
  </body>
 
  </html>

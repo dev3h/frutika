@@ -1,19 +1,8 @@
 <?php
 require_once '../classes/db.php';
 
-if (isset($_COOKIE['remember'])) {
-    $token = $_COOKIE['remember'];
-    $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
-    $result = Database::getInstance()->query($sql);
-
-    if ($result->num_rows == 1) {
-        $each = $result->fetch_assoc();
-        $_SESSION['id'] = $each['id'];
-        $_SESSION['name'] = $each['name'];
-    }
-}
-// if (isset($_SESSION['token'])) {
-//     $token = $_SESSION['token'];
+// if (isset($_COOKIE['remember'])) {
+//     $token = $_COOKIE['remember'];
 //     $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
 //     $result = Database::getInstance()->query($sql);
 
@@ -23,9 +12,20 @@ if (isset($_COOKIE['remember'])) {
 //         $_SESSION['name'] = $each['name'];
 //     }
 // }
+if (isset($_SESSION['token'])) {
+    $token = $_SESSION['token'];
+    $sql = "SELECT * FROM customers WHERE token = '$token' limit 1";
+    $result = Database::getInstance()->query($sql);
+
+    if ($result->num_rows == 1) {
+        $each = $result->fetch_assoc();
+        $_SESSION['id'] = $each['id'];
+        $_SESSION['name'] = $each['name'];
+    }
+}
 
 if (isset($_SESSION['id'])) {
-    header('location: /profile.php');
+    header('location: index.php');
     exit;
 }
 ?>

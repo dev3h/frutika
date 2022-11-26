@@ -1,6 +1,8 @@
 $(document).ready(function () {
   $(".cart-btn").click(function () {
     let id = $(this).val();
+    let quantityProduct = $(".quantityProduct").val();
+    console.log(quantityProduct);
     $.ajax({
       url: "add_to_cart.php",
       type: "GET",

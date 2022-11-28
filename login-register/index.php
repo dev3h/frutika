@@ -58,6 +58,7 @@ if (isset($_SESSION['id'])) {
                             <i class="far fa-eye-slash eye-close eye"></i>
                         </div>
                     </div>
+                    <a href="/forgot_password.php">Quên mật khẩu </a>
                     <div class="remember-group">
                         <label for="remember"><input type="checkbox" name="remember" id="remember"><span>Ghi nhớ đăng nhập</span></label>
                     </div>

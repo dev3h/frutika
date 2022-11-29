@@ -33,14 +33,15 @@ VALUES ('$customer_id' ,  '$name_receiver' ,  '$phone_receiver' ,  '$address_rec
     VALUES ('$order_id' ,  '$product_id' ,  '$quantity')";
         Database::getInstance()->query($sql);
     }
-
-    $_SESSION['payment'] = $cart;
+    // $_SESSION['order_id'] =$order_id;
+    // $_SESSION['totalPrice']= $total_price;
+    // $_SESSION['payment'] = $cart;
 
     unset($_SESSION['cart']);
 
     $res = [
         'status' => 200,
-        'message' => 'Thêm sản phẩm thành công'
+        'message' => 'Thanh toán thành công'
     ];
     echo json_encode($res);
     return false;

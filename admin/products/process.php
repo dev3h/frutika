@@ -32,7 +32,8 @@ if (isset($_POST['update_product'])) {
     $id = $conn->real_escape_string($_POST['id']);
     $name = $conn->real_escape_string($_POST['name']);
     $price = $conn->real_escape_string($_POST['price']);
-    $description = $conn->real_escape_string($_POST['description']);
+    $short_description = $conn->real_escape_string($_POST['short_description']);
+    $long_description = $conn->real_escape_string($_POST['long_description']);
     $category_id = $conn->real_escape_string($_POST['category_id']);
 
     $extensions = array("jpeg", "jpg", "png");
@@ -79,7 +80,7 @@ if (isset($_POST['update_product'])) {
         return false;
     }
 
-    $query = "UPDATE products SET name='$name', photo = '$file_name', price='$price', description='$description', category_id='$category_id' WHERE id='$id'";
+    $query = "UPDATE products SET name='$name', photo = '$file_name', price='$price', short_description='$short_description',long_description='$long_description', category_id='$category_id' WHERE id='$id'";
     $query_run = Database::getInstance()->query($query);
 
     if ($query_run) {
@@ -131,9 +132,11 @@ if (isset($_GET['product_id'])) {
 if (isset($_POST['save_product'])) {
     $name = $conn->real_escape_string($_POST['name']);
     $price = $conn->real_escape_string($_POST['price']);
-    $description = $_POST['description'] ? $conn->real_escape_string($_POST['description']) : NULL;
+    $short_description = $_POST['short_description'] ? $conn->real_escape_string($_POST['short_description']) : NULL;
+    $long_description = $_POST['long_description'] ? $conn->real_escape_string($_POST['long_description']) : NULL;
     $category_id = $conn->real_escape_string($_POST['category_id']);
 
+    $file_tmp = $_FILES['photo']['tmp_name'];
     if ($_FILES['photo']['name']) {
         $photo = $_FILES['photo']['name'];
         $file_name = $_FILES['photo']['name'];
@@ -163,11 +166,12 @@ if (isset($_POST['save_product'])) {
             return false;
         }
     } else {
-        $photo = 'default-coffee.jpg';
+        $photo = 'default-product.png';
         $file_name = NULL;
     }
 
     $target = ADMIN . "assets/uploads/products" . basename($photo);
+    move_uploaded_file($file_tmp, $target);
 
     if ($name == NULL || $price == NULL) {
         $res = [
@@ -178,10 +182,10 @@ if (isset($_POST['save_product'])) {
         return false;
     }
 
-    $query = "INSERT INTO products (name, photo, price,description,category_id) VALUES('$name', IFNULL(DEFAULT(photo),'$file_name'), '$price', IFNULL(DEFAULT(description),'$description'), '$category_id')";
+    $query = "INSERT INTO products (name, photo, price,short_description,long_description,category_id) VALUES('$name', IFNULL(DEFAULT(photo),'$file_name'), '$price', IFNULL(DEFAULT(short_description),'$short_description'),IFNULL(DEFAULT(long_description),'$long_description'), '$category_id')";
     $query_run = Database::getInstance()->query($query);
 
-    if ($query_run && move_uploaded_file($_FILES['photo']['tmp_name'], $target)) {
+    if ($query_run) {
         $res = [
             'status' => 200,
             'message' => 'Thêm sản phẩm thành công'

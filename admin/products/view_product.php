@@ -15,8 +15,12 @@
                     <p id="view_price" class="form-control"></p>
                 </div>
                 <div class="mb-3">
-                    <label for="">Mô tả</label>
-                    <textarea class="summernote view_description" name="description" class="form-control"></textarea>
+                    <label for="">Mô tả ngắn</label>
+                    <textarea class="view_short_description description" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="">Mô tả dài</label>
+                    <textarea class="summernote view_long_description" class="form-control"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="">Danh mục</label>

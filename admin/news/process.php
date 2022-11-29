@@ -127,6 +127,7 @@ if (isset($_POST['save_news'])) {
     $title = $conn->real_escape_string($_POST['title']);
     $content = $_POST['content'] ? $conn->real_escape_string($_POST['content']) : null;
 
+    $file_tmp = $_FILES['photo']['tmp_name'];
     if ($_FILES['photo']['name']) {
         $photo = $_FILES['photo']['name'];
         $file_name = $_FILES['photo']['name'];
@@ -156,10 +157,11 @@ if (isset($_POST['save_news'])) {
             return false;
         }
     } else {
-        $photo = "default-news.jpeg";
+        $photo = "default-news.jpg";
         $file_name = NULL;
     }
     $target = ADMIN . "assets/uploads/news/" . basename($photo);
+    move_uploaded_file($file_tmp, $target);
 
     if ($title == NULL) {
         $res = [
@@ -173,7 +175,7 @@ if (isset($_POST['save_news'])) {
     $query = "INSERT INTO posts (title, photo, content) VALUES('$title', IFNULL(DEFAULT(photo),'$file_name'), IFNULL(DEFAULT(content),'$content'))";
     $query_run = Database::getInstance()->query($query);
 
-    if ($query_run && move_uploaded_file($_FILES['photo']['tmp_name'], $target) || $query_run) {
+    if ($query_run) {
         $res = [
             'status' => 200,
             'message' => 'Thêm tin tức thành công'

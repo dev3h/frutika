@@ -10,6 +10,9 @@ $(document).ready(function () {
         number: true,
         min: 1000,
       },
+      short_description: {
+        max: 100,
+      },
     },
     messages: {
       name: {
@@ -18,7 +21,10 @@ $(document).ready(function () {
       price: {
         required: "Bắt buộc nhập giá sản phẩm",
         number: "Giá sản phẩm phải là số",
-        min: 'Giá sản phẩm phải lớn hơn hoặc bằng 1000',
+        min: "Giá sản phẩm phải lớn hơn hoặc bằng 1000",
+      },
+      short_description: {
+        max: "Mô tả ngắn không được quá 100 ký tự",
       },
     },
     submitHandler: function () {
@@ -33,16 +39,34 @@ $(document).ready(function () {
         success: function (response) {
           const res = jQuery.parseJSON(response);
           console.log(res);
-          if (res.status == 422 || res.status == 415 || res.status == 413) {
-            $("#errorMessage").removeClass("hidden");
-            $("#errorMessage").text(res.message);
-          } else if (res.status == 200) {
+          if (res.status == 200) {
             $("#errorMessage").addClass("hidden");
             $("#modalProductInsert").modal("hide");
             $("#formInsert")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
             $(".tableProducts").load(location.href + " .tableProducts");
+          } else {
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -71,7 +95,7 @@ $(document).ready(function () {
       },
     },
     submitHandler: function () {
-      var formData = new FormData(document.querySelector("#formInsert"));
+      var formData = new FormData(document.querySelector("#formUpdate"));
       formData.append("update_product", true);
       $.ajax({
         url: "process.php",
@@ -81,16 +105,34 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status == 422) {
-            $("#errorMessageUpdate").removeClass("hidden");
-            $("#errorMessageUpdate").text(res.message);
-          } else if (res.status == 200) {
+          if (res.status == 200) {
             $("#errorMessageUpdate").addClass("hidden");
             $("#modalProductUpdate").modal("hide");
             $("#formUpdate")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
             $(".tableProducts").load(location.href + " .tableProducts");
+          } else {
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -105,19 +147,14 @@ $(document).ready(function () {
       type: "GET",
       success: function (response) {
         var res = jQuery.parseJSON(response);
-        if (res.status == 422) {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
-        } else if (res.status == 200) {
+        if (res.status == 200) {
           $("#product_id").val(res.data.id);
           $("#product_name").val(res.data.name);
           $("#product_price").val(res.data.price);
+          $(".product-short_description").val(res.data.short_description);
           $(".summernote.product-description").summernote(
             "code",
-            `<p>${res.data.description}</p>`
+            `<p>${res.data.long_description}</p>`
           );
           $("#category_id").val(res.data.category_id).change();
           $("#photo_old").attr("src", `/admin/assets/uploads/products/${res.data.photo}`);
@@ -125,6 +162,27 @@ $(document).ready(function () {
           $("#product_photo_old").val(res.data.photo);
 
           $("#modalProductUpdate").modal("show");
+        } else {
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -137,24 +195,44 @@ $(document).ready(function () {
       type: "GET",
       success: function (response) {
         var res = jQuery.parseJSON(response);
-        if (res.status == 422 || res.status == 500) {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
-        } else if (res.status == 200) {
+        if (res.status == 200) {
           $("#view_name").text(res.data.name);
           $("#view_price").text(res.data.price);
-          $(".summernote.view_description").summernote(
+          $(".view_short_description").val(res.data.short_description);
+          $(".view_short_description").attr("disabled", true);
+          $(".summernote.view_long_description").summernote(
             "code",
-            `<p>${res.data.description}</p>`
+            `<p>${res.data.long_description}</p>`
           );
-          $(".summernote.view_description").summernote("disable");
+          $(".summernote.view_long_description").summernote("disable");
           $("#view_category").text(res.data.category_name);
-          $("#view_photo").attr("src", `/admin/assets/uploads/products/${res.data.photo}`);
+          $("#view_photo").attr(
+            "src",
+            `/admin/assets/uploads/products/${res.data.photo}`
+          );
           $("#view_photo").attr("alt", `bac-and-chill-${res.data.name}`);
           $("#modalCategoryView").modal("show");
+        } else if (res.status == 200) {
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -183,15 +261,30 @@ $(document).ready(function () {
           },
           success: function (response) {
             var res = jQuery.parseJSON(response);
-            if (res.status == 500) {
-              Swal.fire({
-                icon: "error",
-                title: "Lỗi",
-                text: res.message,
-              });
-            } else {
+            if (res.status == 200) {
               Swal.fire("Thành công", res.message, "success");
               $(".tableProducts").load(location.href + " .tableProducts");
+            } else {
+              toastr.options.escapeHtml = true;
+
+              toastr.options = {
+                closeButton: true,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+              };
+              toastr["error"](res.message, "Lỗi");
             }
           },
         });

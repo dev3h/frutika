@@ -36,34 +36,33 @@ $(document).ready(function () {
         success: function (response) {
           const res = jQuery.parseJSON(response);
           if (res.status === 200) {
-             $("#payment-form")[0].reset();
-               Swal.fire("Thành công", res.message, "success");
-               setTimeout(function () {
-                  window.location.href = "index.php";
-                }, 2000);
+            $("#payment-form")[0].reset();
+            Swal.fire("Thành công", res.message, "success");
+            setTimeout(function () {
+              window.location.href = "/index.php";
+            }, 2000);
           } else if (res.status == 200) {
-           toastr.options.escapeHtml = true;
+            toastr.options.escapeHtml = true;
 
-           Command: toastr["error"](res.message, "Lỗi");
+            Command: toastr["error"](res.message, "Lỗi");
 
-           toastr.options = {
-             closeButton: true,
-             debug: false,
-             newestOnTop: false,
-             progressBar: false,
-             positionClass: "toast-top-right",
-             preventDuplicates: true,
-             onclick: null,
-             showDuration: "300",
-             hideDuration: "1000",
-             timeOut: "5000",
-             extendedTimeOut: "1000",
-             showEasing: "swing",
-             hideEasing: "linear",
-             showMethod: "fadeIn",
-             hideMethod: "fadeOut",
-           };
-          
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
           }
         },
       });

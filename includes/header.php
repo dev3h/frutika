@@ -28,14 +28,18 @@
     <link rel="stylesheet" href="/assets/css/animate.css">
     <!-- mean menu css -->
     <link rel="stylesheet" href="/assets/css/meanmenu.min.css">
-    <!-- main style -->
-    <link rel="stylesheet" href="/assets/css/main.css">
     <!-- responsive -->
     <link rel="stylesheet" href="/assets/css/responsive.css">
     <!-- toastr -->
     <link rel="stylesheet" href="/assets/css/toastr.min.css">
     <!-- jquery ui -->
     <link rel="stylesheet" href="/assets/css/jquery-ui.min.css">
+    <!-- summernote -->
+    <!-- main style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/rating.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/summernote/summernote.css">
 </head>
 
 <body>

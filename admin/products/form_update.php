@@ -18,8 +18,12 @@
                         <input type="text" name="price" id="product_price" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="">Mô tả</label>
-                        <textarea class="summernote product-description" name="description" class="form-control"></textarea>
+                        <label for="">Mô tả ngắn</label>
+                        <textarea class="product-short_description description" name="short_description" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Mô tả dài</label>
+                        <textarea class="summernote product-description" name="long_description" class="form-control"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="">Danh mục</label>

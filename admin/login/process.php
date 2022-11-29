@@ -23,25 +23,40 @@ if (isset($_POST['login'])) {
         $number_rows = $query_run->num_rows;
 
         if ($number_rows == 1) {
-            session_start();
             $each = $query_run->fetch_assoc();
-            $id = $each['id'];
+            if($each['status'] == 1) {
+                session_start();
+                $id = $each['id'];
 
-            $token = uniqid('user_', true);
+                $token = uniqid('user_', true);
 
-            $sql = "UPDATE admin SET token = '$token' WHERE id='$id'";
-            Database::getInstance()->query($sql);
-            // setcookie('remember', $token, time() + 60 * 60 * 24 * 30);
-            $_SESSION['username'] = $each['username'];
-            $_SESSION['token'] = $token;
-            $_SESSION['role'] = $each['role'];
+                $sql = "UPDATE admin SET token = '$token' WHERE id='$id'";
+                Database::getInstance()->query($sql);
 
-            $res = [
-                'status' => 200,
-                'message' => 'Đăng nhập thành công'
-            ];
-            echo json_encode($res);
-            return false;
+                $_SESSION['username'] = $each['username'];
+                $_SESSION['token'] = $token;
+                $_SESSION['role'] = $each['role'];
+
+                $res = [
+                        'status' => 200,
+                        'message' => 'Đăng nhập thành công'
+                    ];
+                echo json_encode($res);
+                return false;
+                $res = [
+                    'status' => 200,
+                    'message' => 'Đăng nhập thành công'
+                ];
+                echo json_encode($res);
+                return true;
+            } else {
+                $res = [
+                    'status' => 421,
+                    'message' => 'Tài khoản của bạn đã bị khóa'
+                ];
+                echo json_encode($res);
+                return false;
+            }
         } else {
             $res = [
                 'status' => 403,

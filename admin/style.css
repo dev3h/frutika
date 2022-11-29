@@ -5363,3 +5363,6 @@ div#sparklinehome canvas {
   color: #fff;
   text-decoration: none;
 }
+textarea.description {
+  width: 100%;
+}

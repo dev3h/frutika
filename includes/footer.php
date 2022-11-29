@@ -102,6 +102,11 @@
  <script src="/assets/js/jquery-ui.min.js"></script>
  <script src="/assets/js/toggleSearchBar.js"></script>
  <script src="/assets/js/ajax/ajaxLiveSearch.js"></script>
+ <script>
+     $(function() {
+         $("#tabs").tabs();
+     });
+ </script>
  </body>
 
- </html>
+ < /html>

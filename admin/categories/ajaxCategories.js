@@ -22,16 +22,33 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status == 422) {
-            $("#errorMessage").removeClass("hidden");
-            $("#errorMessage").text(res.message);
-          } else if (res.status == 200) {
-            $("#errorMessage").addClass("hidden");
-            $("#modalCategoryInsert").modal("hide");
-            $("#formInsert")[0].reset();
-            Swal.fire("Thành công", res.message, "success");
+          if (res.status == 200) {
+           $("#modalCategoryInsert").modal("hide");
+           $("#formInsert")[0].reset();
+           Swal.fire("Thành công", res.message, "success");
 
-            $(".tableCategories").load(location.href + " .tableCategories");
+           $(".tableCategories").load(location.href + " .tableCategories");
+          } else {
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -60,16 +77,33 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status == 422) {
-            $("#errorMessageUpdate").removeClass("hidden");
-            $("#errorMessageUpdate").text(res.message);
-          } else if (res.status == 200) {
-            $("#errorMessageUpdate").addClass("hidden");
-            $("#modalCategoryUpdate").modal("hide");
-            $("#formUpdate")[0].reset();
-            Swal.fire("Thành công", res.message, "success");
+          if (res.status == 200) {
+           $("#modalCategoryUpdate").modal("hide");
+           $("#formUpdate")[0].reset();
+           Swal.fire("Thành công", res.message, "success");
 
-            $(".tableCategories").load(location.href + " .tableCategories");
+           $(".tableCategories").load(location.href + " .tableCategories");
+          } else {
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -84,16 +118,31 @@ $(document).ready(function () {
       type: "GET",
       success: function (response) {
         var res = jQuery.parseJSON(response);
-        if (res.status == 422) {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
-        } else if (res.status == 200) {
-          $("#category_id").val(res.data.id);
-          $("#category_name").val(res.data.name);
-          $("#modalCategoryUpdate").modal("show");
+        if (res.status == 200) {
+         $("#category_id").val(res.data.id);
+         $("#category_name").val(res.data.name);
+         $("#modalCategoryUpdate").modal("show");
+        } else {
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -106,15 +155,30 @@ $(document).ready(function () {
       type: "GET",
       success: function (response) {
         var res = jQuery.parseJSON(response);
-        if (res.status == 422 || res.status == 500) {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
-        } else if (res.status == 200) {
-          $("#view_name").text(res.data.name);
-          $("#modalCategoryView").modal("show");
+        if (res.status == 200) {
+         $("#view_name").text(res.data.name);
+         $("#modalCategoryView").modal("show");
+        } else {
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -142,15 +206,30 @@ $(document).ready(function () {
           },
           success: function (response) {
             var res = jQuery.parseJSON(response);
-            if (res.status == 500) {
-              Swal.fire({
-                icon: "error",
-                title: "Lỗi",
-                text: res.message,
-              });
+            if (res.status == 200) {
+               Swal.fire("Thành công", res.message, "success");
+               $(".tableCategories").load(location.href + " .tableCategories");
             } else {
-              Swal.fire("Thành công", res.message, "success");
-              $(".tableCategories").load(location.href + " .tableCategories");
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
             }
           },
         });

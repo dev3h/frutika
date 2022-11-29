@@ -86,18 +86,19 @@
         }
 
         // projects filters isotop
-        $(".product-filters li").on('click', function () {
+        if ( $(".product-filters li").attr("data-filter") == window.location.search.includes("category") ) {
             
+        }
+          $(".product-filters li").on("click", function () {
             $(".product-filters li").removeClass("active");
             $(this).addClass("active");
 
-            var selector = $(this).attr('data-filter');
+            var selector = $(this).attr("data-filter");
 
             $(".product-lists").isotope({
-                filter: selector,
+              filter: selector,
             });
-            
-        });
+          });
         
         // isotop inner
         $(".product-lists").isotope();

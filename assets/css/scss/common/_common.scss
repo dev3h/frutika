@@ -240,7 +240,7 @@ a.read-more-btn:hover {
 
 a.boxed-btn,
 a.bordered-btn,
-:is(a,button).cart-btn {
+:is(a,button):is(.cart-btn,.rating-btn) {
   border: unset;
   border-radius: 50px;
 }

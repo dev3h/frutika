@@ -1,23 +1,36 @@
 <?php
 
 session_start();
-
-if(!isset($_SESSION['id'])) {
-    header('location: login-register');
-    exit;
-}
 require_once './classes/db.php';
 $conn = Database::getConnection();
 
-if (empty($_GET['id'])) {
+$product_quantity = 1;
+if (!isset($_SESSION['id'])) {
     $res = [
-        'status' => 204,
-        'message' => 'ID không tồn tại'
+        'status' => 302,
+        'message' => 'Yêu cầu đăng nhập',
+        'redirect' => '/login-register'
     ];
     echo json_encode($res);
     return false;
+};
+if (isset($_POST['add_product_to_cart'])) {
+    $product_quantity = $conn->real_escape_string($_POST['quantity-product']);
 }
-$id = $conn->real_escape_string($_GET['id']);
+
+// if (empty($_GET['id']) || empty($_POST['id'])) {
+//     $res = [
+//         'status' => 204,
+//         'message' => 'ID không tồn tại'
+//     ];
+//     echo json_encode($res);
+//     return false;
+// }
+if (isset($_GET['id'])) {
+    $id = $conn->real_escape_string($_GET['id']);
+} else {
+    $id = $conn->real_escape_string($_POST['id']);
+}
 
 $sql = "SELECT * FROM products WHERE id='$id'";
 $result = Database::getInstance()->query($sql);
@@ -28,7 +41,7 @@ if (empty($_SESSION['cart'][$id])) {
     $_SESSION['cart'][$id]['name'] = $name;
     $_SESSION['cart'][$id]['photo'] = $each['photo'];
     $_SESSION['cart'][$id]['price'] = $each['price'];
-    $_SESSION['cart'][$id]['quantity'] = 1;
+    $_SESSION['cart'][$id]['quantity'] = $product_quantity;
 
     $res = [
         'status' => 200,
@@ -36,7 +49,7 @@ if (empty($_SESSION['cart'][$id])) {
         'data' => sizeof($_SESSION['cart'])
     ];
 } else {
-    $_SESSION['cart'][$id]['quantity']++;
+    $_SESSION['cart'][$id]['quantity'] += $product_quantity;
 
     $res = [
         'status' => 200,

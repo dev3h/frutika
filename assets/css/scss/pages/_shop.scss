@@ -69,6 +69,36 @@
   font-weight: 600;
 }
 
+.comment-group {
+  border: 1px solid;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+}
+#tabs {
+  max-width: 1200px;
+  margin: 30px auto 50px;
+}
+.comment-customer-photo {
+  width: 25px;
+  height: 25px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+}
+.comment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+a.ui-tabs-anchor {
+  background-color: $primary-color;
+}
+
 p.product-price {
   span {
     display: block;
@@ -83,7 +113,7 @@ p.product-price {
   margin-bottom: 15px;
 }
 
-:is(a, button).cart-btn {
+:is(a, button):is(.cart-btn,.rating-btn) {
   font-family: "Poppins", sans-serif;
   display: inline-block;
   background-color: $primary-color;

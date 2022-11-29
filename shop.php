@@ -1,7 +1,27 @@
 <?php
 $title = 'Cửa hàng';
-require_once 'includes/header.php';
-require_once 'functions/handleCurrency.php';
+require_once './path.php';
+require_once ROOT . 'includes/header.php';
+require_once ROOT . 'functions/handleCurrency.php';
+require_once ROOT . 'classes/db.php';
+
+$page  = 1;
+
+if (isset($_GET['page'])) {
+	$page = $_GET['page'];
+}
+
+$sql = "SELECT COUNT(*) FROM products ";
+$result = Database::getInstance()->query($sql);
+$num_of_product = $result->fetch_assoc()['COUNT(*)'];
+
+$products_per_page = 3;
+$num_of_page = ceil($num_of_product / $products_per_page);
+
+$skip = $products_per_page * ($page - 1);
+
+$query = "SELECT products.*, categories.name as category_name FROM products, categories WHERE products.category_id = categories.id limit $products_per_page offset $skip";
+$productsList = Database::getInstance()->query($query);
 ?>
 
 <!-- breadcrumb-section -->
@@ -28,13 +48,12 @@ require_once 'functions/handleCurrency.php';
 					<ul>
 						<li class="active" data-filter="*">All</li>
 						<?php
-						require_once 'classes/db.php';
 
 						$query = "SELECT * FROM categories";
-						$query_run = Database::getInstance()->query($query);
+						$categories = Database::getInstance()->query($query);
 
-						if ($query_run->num_rows > 0) {
-							foreach ($query_run as $each) {
+						if ($categories->num_rows > 0) {
+							foreach ($categories as $each) {
 								$name = explode(" ", $each['name']);
 								$filter = implode("-", $name);
 						?>
@@ -48,11 +67,10 @@ require_once 'functions/handleCurrency.php';
 
 		<div class="row product-lists">
 			<?php
-			$query = "SELECT products.*, categories.name as category_name FROM products, categories WHERE products.category_id = categories.id";
-			$query_run = Database::getInstance()->query($query);
 
-			if ($query_run->num_rows > 0) {
-				foreach ($query_run as $each) {
+
+			if ($productsList->num_rows > 0) {
+				foreach ($productsList  as $each) {
 					$name = explode(" ", $each['category_name']);
 					$filter = implode("-", $name);
 			?>
@@ -75,11 +93,11 @@ require_once 'functions/handleCurrency.php';
 			<div class="col-lg-12 text-center">
 				<div class="pagination-wrap">
 					<ul>
-						<li><a href="#">Prev</a></li>
-						<li><a href="#">1</a></li>
-						<li><a class="active" href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">Next</a></li>
+						<?php
+						for ($i = 1; $i <= $num_of_page; $i++) { ?>
+							<li><a href='?page=<?php echo $i ?>'><?php echo $i ?></a></li>
+
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -89,5 +107,5 @@ require_once 'functions/handleCurrency.php';
 <!-- end products -->
 
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once ROOT . 'includes/footer.php'; ?>
 <script src="/assets/js/ajax/ajaxAddToCart.js"></script>

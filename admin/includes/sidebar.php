@@ -84,6 +84,8 @@ session_start();
 		============================================ -->
   <script src="/admin/js/vendor/modernizr-2.8.3.min.js"></script>
   <link rel="stylesheet" href="/admin/css/toastr.min.css">
+  <link rel="stylesheet" href="/admin/css/chart.css">
+  <link rel="stylesheet" href="/admin/css/chartColumn.css">
 </head>
 
 <body>

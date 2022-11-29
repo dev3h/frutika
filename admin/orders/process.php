@@ -27,3 +27,39 @@ if (isset($_POST['update_order']) || isset($_POST['cancel_order'])) {
         return false;
     }
 }
+
+if (isset($_GET['order_id'])) {
+    $order_id = $conn->real_escape_string($_GET['order_id']);
+
+    $query = "SELECT * FROM order_product 
+        JOIN products ON products.id = order_product.product_id WHERE order_id = '$order_id' ";
+    $query_run = Database::getInstance()->query($query);
+    $arr = [];
+
+
+
+    if ($query_run) {
+        foreach ($query_run as $each) {
+            $arr[] = [
+                'photo' => $each['photo'],
+                'name' => $each['name'],
+                'price' => $each['price'],
+                'quantity' => $each['quantity']
+            ];
+        }
+        $res = [
+            'status' => 200,
+            'message' => 'Lấy đơn hàng thành công',
+            'data' => $arr
+        ];
+        echo json_encode($res);
+        return false;
+    } else {
+        $res = [
+            'status' => 404,
+            'message' => 'Không tìm thấy đơn hàng'
+        ];
+        echo json_encode($res);
+        return false;
+    }
+}

@@ -59,16 +59,34 @@ $(document).ready(function () {
         success: function (response) {
           const res = jQuery.parseJSON(response);
           console.log(res);
-          if (res.status == 422 || res.status == 415 || res.status == 413) {
-            $("#errorMessage").removeClass("hidden");
-            $("#errorMessage").text(res.message);
-          } else if (res.status == 200) {
+          if (res.status == 200) {
             $("#errorMessage").addClass("hidden");
             $("#modalAccountInsert").modal("hide");
             $("#formInsert")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
             $(".tableAccount").load(location.href + " .tableAccount");
+          } else {
+           toastr.options.escapeHtml = true;
+
+           toastr.options = {
+             closeButton: true,
+             debug: false,
+             newestOnTop: false,
+             progressBar: false,
+             positionClass: "toast-top-right",
+             preventDuplicates: true,
+             onclick: null,
+             showDuration: "300",
+             hideDuration: "1000",
+             timeOut: "5000",
+             extendedTimeOut: "1000",
+             showEasing: "swing",
+             hideEasing: "linear",
+             showMethod: "fadeIn",
+             hideMethod: "fadeOut",
+           };
+           toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -111,16 +129,34 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status == 422) {
-            $("#errorMessageUpdate").removeClass("hidden");
-            $("#errorMessageUpdate").text(res.message);
-          } else if (res.status == 200) {
-            $("#errorMessageUpdate").addClass("hidden");
-            $("#modalAccountUpdate").modal("hide");
-            $("#formUpdate")[0].reset();
-            Swal.fire("Thành công", res.message, "success");
+          if (res.status == 200) {
+           $("#errorMessageUpdate").addClass("hidden");
+           $("#modalAccountUpdate").modal("hide");
+           $("#formUpdate")[0].reset();
+           Swal.fire("Thành công", res.message, "success");
 
-            $(".tableAccount").load(location.href + " .tableAccount");
+           $(".tableAccount").load(location.href + " .tableAccount");
+          } else  {
+           toastr.options.escapeHtml = true;
+
+           toastr.options = {
+             closeButton: true,
+             debug: false,
+             newestOnTop: false,
+             progressBar: false,
+             positionClass: "toast-top-right",
+             preventDuplicates: true,
+             onclick: null,
+             showDuration: "300",
+             hideDuration: "1000",
+             timeOut: "5000",
+             extendedTimeOut: "1000",
+             showEasing: "swing",
+             hideEasing: "linear",
+             showMethod: "fadeIn",
+             hideMethod: "fadeOut",
+           };
+           toastr["error"](res.message, "Lỗi");
           }
         },
       });
@@ -135,30 +171,45 @@ $(document).ready(function () {
       type: "GET",
       success: function (response) {
         var res = jQuery.parseJSON(response);
-        if (res.status == 422) {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
-        } else if (res.status == 200) {
-          $("#account_id").val(res.data.id);
-          $("#account_displayname").val(res.data.displayname);
-          $("#account_email").val(res.data.email);
+        if (res.status == 200) {
+         $("#account_id").val(res.data.id);
+         $("#account_displayname").val(res.data.displayname);
+         $("#account_email").val(res.data.email);
 
-          $.each($(".gender_id"), function (key, value) {
-            key == res.data.gender
-              ? $(this).prop("checked", true)
-              : $(this).prop("checked", false);
-          });
-          $(".gender_id").val().change;
-          $("#role_id").val(res.data.role).change;
-          $("#status_id").val(res.data.status).change;
-          $("#photo_old").attr("src", `/admin/assets/uploads/accounts/${res.data.photo}`);
-          $("#photo_old").attr("alt", `bac-and-chill-${res.data.title}`);
-          $("#account_photo_old").val(res.data.photo);
+         $.each($(".gender_id"), function (key, value) {
+           key == res.data.gender
+             ? $(this).prop("checked", true)
+             : $(this).prop("checked", false);
+         });
+         $(".gender_id").val().change;
+         $("#role_id").val(res.data.role).change;
+         $("#status_id").val(res.data.status).change;
+         $("#photo_old").attr("src", `/admin/assets/uploads/accounts/${res.data.photo}`);
+         $("#photo_old").attr("alt", `bac-and-chill-${res.data.title}`);
+         $("#account_photo_old").val(res.data.photo);
 
-          $("#modalAccountUpdate").modal("show");
+         $("#modalAccountUpdate").modal("show");
+        } else {
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -185,11 +236,26 @@ $(document).ready(function () {
           $("#view_photo").attr("alt", `bac-and-chill-${res.data.name}`);
           $("#modalAccountView").modal("show");
         } else {
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: res.message,
-          });
+          toastr.options.escapeHtml = true;
+
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -198,13 +264,13 @@ $(document).ready(function () {
   $(".deleteAccountBtn").click(function (e) {
     e.preventDefault();
     Swal.fire({
-      title: "Bạn có chắc muốn xóa tài khoản này không?",
-      text: "Tài khoản này sẽ không thể khôi phục lại được!",
+      title: "Bạn có chắc muốn khóa tài khoản này không?",
+      text: "Tài khoản này sẽ không thể truy cập được!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Có, xóa!",
+      confirmButtonText: "Có, khóa!",
     }).then((result) => {
       if (result.isConfirmed) {
         var account_id = $(this).val();
@@ -212,20 +278,35 @@ $(document).ready(function () {
           url: "process.php",
           type: "POST",
           data: {
-            delete_account: true,
+            lock_account: true,
             id: account_id,
           },
           success: function (response) {
             var res = jQuery.parseJSON(response);
-            if (res.status == 500) {
-              Swal.fire({
-                icon: "error",
-                title: "Lỗi",
-                text: res.message,
-              });
-            } else {
+            if (res.status == 200) {
               Swal.fire("Thành công", res.message, "success");
               $(".tableAccount").load(location.href + " .tableAccount");
+            } else {
+             toastr.options.escapeHtml = true;
+
+             toastr.options = {
+               closeButton: true,
+               debug: false,
+               newestOnTop: false,
+               progressBar: false,
+               positionClass: "toast-top-right",
+               preventDuplicates: true,
+               onclick: null,
+               showDuration: "300",
+               hideDuration: "1000",
+               timeOut: "5000",
+               extendedTimeOut: "1000",
+               showEasing: "swing",
+               hideEasing: "linear",
+               showMethod: "fadeIn",
+               hideMethod: "fadeOut",
+             };
+             toastr["error"](res.message, "Lỗi");
             }
           },
         });

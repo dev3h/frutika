@@ -91,12 +91,19 @@
  <!-- main JS
 		============================================ -->
  <script src="/admin/js/main.js"></script>
+
+ <script src="https://code.highcharts.com/highcharts.js"></script>
+ <script src="https://code.highcharts.com/modules/series-label.js"></script>
+ <script src="https://code.highcharts.com/modules/exporting.js"></script>
+ <script src="https://code.highcharts.com/modules/export-data.js"></script>
+ <script src="https://code.highcharts.com/modules/accessibility.js"></script>
  <script>
  	$(document).ready(function() {
  		$('.summernote').summernote();
  	});
  </script>
  <script src="/admin/js/toastr.min.js"></script>
+ <script src='/admin/js/handleCurrency.js'></script>
  </body>
 
  </html>

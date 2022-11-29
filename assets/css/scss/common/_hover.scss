@@ -208,7 +208,7 @@ div.owl-controls div.owl-nav div:hover {
   }
 }
 
-:is(a, button).cart-btn {
+:is(a, button):is(.cart-btn,.rating-btn) {
   transition: 0.3s;
 
   &:hover {

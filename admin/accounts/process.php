@@ -3,24 +3,24 @@ require_once '../classes/db.php';
 require_once '../path.php';
 $conn = Database::getConnection();
 
-// DELETE
-if (isset($_POST['delete_account'])) {
+// LOCK
+if (isset($_POST['lock_account'])) {
     $id = $conn->real_escape_string($_POST['id']);
 
-    $query = "DELETE FROM admin WHERE id=' $id'";
+    $query = "UPDATE admin SET status = '0'  WHERE id=' $id'";
     $query_run = Database::getInstance()->query($query);
 
     if ($query_run) {
         $res = [
             'status' => 200,
-            'message' => 'Xóa tài khoản thành công'
+            'message' => 'khóa tài khoản thành công'
         ];
         echo json_encode($res);
         return false;
     } else {
         $res = [
             'status' => 500,
-            'message' => 'Xóa tài khoản thất bại'
+            'message' => 'khóa tài khoản thất bại'
         ];
         echo json_encode($res);
         return false;
@@ -137,6 +137,7 @@ if (isset($_POST['save_account'])) {
     $status = $conn->real_escape_string($_POST['status_id']);
 
     $extensions = array("jpeg", "jpg", "png");
+    $file_tmp = $_FILES['photo']['tmp_name'];
     if ($_FILES['photo']['name']) {
         $photo = $_FILES['photo']['name'];
         $file_name = $_FILES['photo']['name'];
@@ -182,7 +183,7 @@ if (isset($_POST['save_account'])) {
     $query = "INSERT INTO admin (username,displayname, photo, email, gender, role, status) VALUES('$username','$displayname', IFNULL(DEFAULT(photo),'$file_name'), '$email', '$gender', '$role', '$status')";
     $query_run = Database::getInstance()->query($query);
 
-    if ($query_run && move_uploaded_file($_FILES['photo']['tmp_name'], $target) || $query_run) {
+    if ($query_run) {
         $res = [
             'status' => 200,
             'message' => 'Thêm tài khoản thành công'

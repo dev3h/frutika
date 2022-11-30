@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../check_admin_login.php';
 ?>
 <!doctype html>
 <html class="no-js" lang="en">

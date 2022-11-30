@@ -11,16 +11,17 @@ if (isset($_GET['page'])) {
 	$page = $_GET['page'];
 }
 
-$sql = "SELECT COUNT(*) FROM products ";
-$result = Database::getInstance()->query($sql);
-$num_of_product = $result->fetch_assoc()['COUNT(*)'];
+// $sql = "SELECT COUNT(*) FROM products ";
+// $result = Database::getInstance()->query($sql);
+// $num_of_product = $result->fetch_assoc()['COUNT(*)'];
 
-$products_per_page = 3;
-$num_of_page = ceil($num_of_product / $products_per_page);
+// $products_per_page = 3;
+// $num_of_page = ceil($num_of_product / $products_per_page);
 
-$skip = $products_per_page * ($page - 1);
+// $skip = $products_per_page * ($page - 1);
 
-$query = "SELECT products.*, categories.name as category_name FROM products, categories WHERE products.category_id = categories.id limit $products_per_page offset $skip";
+// $query = "SELECT products.*, categories.name as category_name FROM products, categories WHERE products.category_id = categories.id limit $products_per_page offset $skip";
+$query = "SELECT products.*, categories.name as category_name FROM products JOIN categories ON products.category_id = categories.id";
 $productsList = Database::getInstance()->query($query);
 ?>
 
@@ -70,37 +71,23 @@ $productsList = Database::getInstance()->query($query);
 
 
 			if ($productsList->num_rows > 0) {
-				foreach ($productsList  as $each) {
-					$name = explode(" ", $each['category_name']);
+				foreach ($productsList  as $product) {
+					$name = explode(" ", $product['category_name']);
 					$filter = implode("-", $name);
 			?>
 					<div class="col-lg-4 col-md-6 text-center <?php echo $filter ?>">
 						<div class="single-product-item">
 							<div class="product-image single-product-image">
-								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?> "></a>
+								<a href="single-product.php?id=<?php echo $product['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $product['photo'] ?>" alt="frutikha - <?php $product['name'] ?> "></a>
 							</div>
-							<h3><?php echo $each['name'] ?></h3>
-							<p class="product-price d-flex"><?php echo handleCurrency($each['price']) ?></p>
+							<h3><?php echo $product['name'] ?></h3>
+							<p class="product-price d-flex"><?php echo handleCurrency($product['price']) ?></p>
 
-							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+							<button class="cart-btn" value="<?php echo $product['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
 						</div>
 					</div>
 			<?php }
 			} ?>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<div class="pagination-wrap">
-					<ul>
-						<?php
-						for ($i = 1; $i <= $num_of_page; $i++) { ?>
-							<li><a href='?page=<?php echo $i ?>'><?php echo $i ?></a></li>
-
-						<?php } ?>
-					</ul>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

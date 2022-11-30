@@ -41,7 +41,7 @@ VALUES ('$customer_id' ,  '$name_receiver' ,  '$phone_receiver' ,  '$address_rec
 
     $res = [
         'status' => 200,
-        'message' => 'Thanh toán thành công'
+        'message' => 'Đặt hàng thành công'
     ];
     echo json_encode($res);
     return false;
@@ -53,6 +53,3 @@ VALUES ('$customer_id' ,  '$name_receiver' ,  '$phone_receiver' ,  '$address_rec
     echo json_encode($res);
     return false;
 }
-
-
-

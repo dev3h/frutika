@@ -657,6 +657,7 @@ nav.mean-nav > ul > li:first-child > a {
   width: 250px;
   display: none;
   flex-direction: column;
+  box-shadow: 0 0 10px #000;
   background-color: #fff;
 }
 .user-menu__item li:not(:last-child) {

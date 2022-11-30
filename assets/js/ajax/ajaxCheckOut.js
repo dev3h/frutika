@@ -39,7 +39,7 @@ $(document).ready(function () {
             $("#payment-form")[0].reset();
             Swal.fire("Thành công", res.message, "success");
             setTimeout(function () {
-              window.location.href = "/index.php";
+              window.location.href = "/myOrder";
             }, 2000);
           } else if (res.status == 200) {
             toastr.options.escapeHtml = true;

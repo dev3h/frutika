@@ -36,6 +36,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['username'] = $each['username'];
                 $_SESSION['token'] = $token;
                 $_SESSION['role'] = $each['role'];
+                $_SESSION['active'] = $each['status'];
 
                 $res = [
                         'status' => 200,

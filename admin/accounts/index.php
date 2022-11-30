@@ -3,7 +3,8 @@ require_once '../path.php';
 $title = 'Quản lý tài khoản khách hàng';
 $current = 'Quản lý tài khoản';
 require_once ADMIN . 'includes/sidebar.php';
-require_once ADMIN. 'functions/handleGender.php';
+require_once '../check_super_admin_login.php';
+require_once ADMIN . 'functions/handleGender.php';
 require_once ADMIN . 'functions/handleStatus.php';
 ?>
 <!-- Start Welcome area -->
@@ -79,7 +80,7 @@ require_once ADMIN . 'functions/handleStatus.php';
                                                         <div style="text-align: end;">
                                                             <button type="button" class="viewAccountBtn btn btn-primary" value="<?php echo $each['id'] ?>" title="xem"><i class="fa fa-eye"></i></button>
                                                             <button type="button" class="updateAccountBtn btn btn-primary" value="<?php echo $each['id'] ?>" title="sửa"><i class="fa fa-pencil"></i></button>
-                                                            <button type="button" class="deleteAccountBtn btn btn-primary" value="<?php echo $each['id'] ?>" title="xóa"><i class="fa fa-trash-o"></i></button>
+                                                            <button type="button" class="deleteAccountBtn btn btn-primary" value="<?php echo $each['id'] ?>" title="khóa"><i class="fa fa-lock"></i></button>
                                                         </div>
                                                     </td>
                                                 </tr>

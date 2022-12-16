@@ -45,11 +45,11 @@
 <body>
 
     <!--PreLoader-->
-    <div class="loader">
+    <!-- <div class="loader">
         <div class="loader-inner">
             <div class="circle"></div>
         </div>
-    </div>
+    </div> -->
     <!--PreLoader Ends-->
 
     <!-- header -->
@@ -121,7 +121,7 @@
                                                 <span class="user-menu--name"><?php echo $_SESSION['name'] ?></span>
                                                 <ul class="user-menu__item">
                                                     <li><a href="/profile.php">Tài khoản</a></li>
-                                                    <li><a href="/myOrder.php">Đơn hàng</a></li>
+                                                    <li><a href="/myOrder">Đơn hàng</a></li>
                                                     <li><a href="/logout.php">Đăng xuất</a></li>
                                                 </ul>
                                             </div>

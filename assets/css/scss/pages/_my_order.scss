@@ -1,0 +1,55 @@
+.tabs-my-order {
+  background-color: #ccc !important;
+}
+.my-order-group {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.footer-my-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  button {
+    background-color: $primary-color;
+    border: none;
+    outline: none;
+    color: $white-color;
+    display: inline-block;
+    width: 10%;
+    &:hover {
+      background-color: $black-color;
+      color: $primary-color;
+    }
+  }
+  .totalPayment {
+    font-size: 1.5rem;
+    text-align: right;
+    span {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
+}
+.order-image-wrapper {
+  .order-image {
+    border: 1px solid #ccc;
+  }
+}
+.my-order-item {
+  border-bottom: 1px solid;
+  padding: 10px;
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    .item-wrapper {
+      display: flex;
+      gap: 20px;
+    }
+    .item-price {
+      color: $primary-color;
+    }
+  }
+}

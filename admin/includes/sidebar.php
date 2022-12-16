@@ -142,6 +142,12 @@ require_once '../check_admin_login.php';
                 <span class="mini-click-non">Quản lý đơn hàng</span>
               </a>
             </li>
+            <li>
+              <a href="/admin/customers" aria-expanded="false">
+                <span class="fa fa-users icon-wrap"></span>
+                <span class="mini-click-non">Quản lý khách hàng</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>

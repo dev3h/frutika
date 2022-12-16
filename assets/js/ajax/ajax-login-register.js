@@ -31,7 +31,10 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status === 500 || res.status === 422) {
+          if (res.status === 200) {
+            $(".sign-in-form")[0].reset();
+            history.back();
+          } else {
             toastr.options.escapeHtml = true;
 
             Command: toastr["error"](res.message, "Lỗi");
@@ -53,9 +56,6 @@ $(document).ready(function () {
               showMethod: "fadeIn",
               hideMethod: "fadeOut",
             };
-          } else if (res.status == 200) {
-            $(".sign-in-form")[0].reset();
-            window.location.href = "/index.php";
           }
         },
       });
@@ -117,7 +117,10 @@ $(document).ready(function () {
         contentType: false,
         success: function (response) {
           const res = jQuery.parseJSON(response);
-          if (res.status === 500 || res.status === 422 || res.status === 303) {
+          if (res.status === 200) {
+            $(".sign-up-form")[0].reset();
+            history.back();
+          } else {
             toastr.options.escapeHtml = true;
 
             Command: toastr["error"](res.message, "Lỗi");
@@ -139,9 +142,6 @@ $(document).ready(function () {
               showMethod: "fadeIn",
               hideMethod: "fadeOut",
             };
-          } else if (res.status == 200) {
-            $(".sign-up-form")[0].reset();
-            window.location.href = "/profile.php";
           }
         },
       });

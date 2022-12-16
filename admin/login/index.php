@@ -1,10 +1,5 @@
 <?php
 
-if (isset($_SESSION['token'])) {
-    header('location:/admin/dashboard');
-    exit;
-}
-
 require_once 'header.php';
 ?>
 <main>
@@ -27,7 +22,13 @@ require_once 'header.php';
                         </div>
 
                         <div class="input-wrap">
-                            <input type="password" class="input-field" autocomplete="off" name="password" />
+                            <div class="field-group">
+                                <input type="password" class="input-field" autocomplete="off" name="password" />
+                                <div class="toggle-password">
+                                    <i class="fa fa-eye eye-open eye"></i>
+                                    <i class="fa fa-eye-slash eye-close eye"></i>
+                                </div>
+                            </div>
                             <label class="login-label">Mật khẩu</label>
                         </div>
 

@@ -2615,4 +2615,89 @@ table.order-details tbody td {
   padding: 20px 10px;
 }
 
+.field-group {
+  width: 100%;
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.eye-open {
+  display: none;
+}
+
+.eye-open.is-active {
+  display: block;
+}
+
+.eye-open.is-active + .eye-close {
+  display: none;
+}
+
+.tabs-my-order {
+  background-color: #ccc !important;
+}
+
+.my-order-group {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.footer-my-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.footer-my-order button {
+  background-color: #F28123;
+  border: none;
+  outline: none;
+  color: #fff;
+  display: inline-block;
+  width: 10%;
+}
+.footer-my-order button:hover {
+  background-color: #000;
+  color: #F28123;
+}
+.footer-my-order .totalPayment {
+  font-size: 1.5rem;
+  text-align: right;
+}
+.footer-my-order .totalPayment span {
+  color: #F28123;
+  font-weight: bold;
+}
+
+.order-image-wrapper .order-image {
+  border: 1px solid #ccc;
+}
+
+.my-order-item {
+  border-bottom: 1px solid;
+  padding: 10px;
+}
+.my-order-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+.my-order-item-row .item-wrapper {
+  display: flex;
+  gap: 20px;
+}
+.my-order-item-row .item-price {
+  color: #F28123;
+}
+img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
+        display: none;
+    }
+
 /*# sourceMappingURL=main.css.map */

@@ -34,3 +34,25 @@
   box-shadow: none;
   padding: 20px 10px;
 }
+.field-group {
+  width: 100%;
+  position: relative;
+}
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.eye-open {
+  display: none;
+}
+
+.eye-open.is-active {
+  display: block;
+}
+
+.eye-open.is-active + .eye-close {
+  display: none;
+}

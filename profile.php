@@ -67,15 +67,33 @@ require_once 'functions/handleCurrency.php';
                             </div>
                             <div class="form-group-inner">
                                 <label>Mật khẩu</label>
-                                <input type="password" name="password" class="form-control" placeholder="nhập mật khẩu" />
+                                <div class="field-group">
+                                    <input type="password" name="password" class="form-control" placeholder="nhập mật khẩu" />
+                                    <div class="toggle-password">
+                                        <i class="far fa-eye eye-open eye"></i>
+                                        <i class="far fa-eye-slash eye-close eye"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group-inner">
                                 <label>Mật khẩu mới</label>
-                                <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="nhập mật khẩu mới" />
+                                <div class="field-group">
+                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="nhập mật khẩu mới" />
+                                    <div class="toggle-password">
+                                        <i class="far fa-eye eye-open eye"></i>
+                                        <i class="far fa-eye-slash eye-close eye"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group-inner">
                                 <label>Nhập lại mật khẩu mới</label>
-                                <input type="password" name="reNewPassword" class="form-control" placeholder="nhập lại mật khẩu mới" />
+                                <div class="field-group">
+                                    <input type="password" name="reNewPassword" class="form-control" placeholder="nhập lại mật khẩu mới" />
+                                    <div class="toggle-password">
+                                        <i class="far fa-eye eye-open eye"></i>
+                                        <i class="far fa-eye-slash eye-close eye"></i>
+                                    </div>
+                                </div>
                             </div>
                             <input type="submit" value="Cập nhập" class="btn btn-primary">
                         </div>
@@ -96,4 +114,5 @@ require_once 'functions/handleCurrency.php';
         }
     };
 </script>
+<script src="/assets/js/handlePasswordVisible.js"></script>
 <script src="/assets/js/ajax/ajaxProfile.js"></script>

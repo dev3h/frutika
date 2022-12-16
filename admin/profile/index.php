@@ -43,7 +43,7 @@ require_once ADMIN . 'functions/handleStatus.php';
                                     for ($i = 0; $i < 3; $i++) {
                                     ?>
                                         <div>
-                                            <input type="radio" name="gender" value="<?php echo $i ?>" <?php if($each['gender'] == $i){  ?> checked <?php }?> class="gender_id">
+                                            <input type="radio" name="gender" value="<?php echo $i ?>" <?php if ($each['gender'] == $i) {  ?> checked <?php } ?> class="gender_id">
                                             <label for="">
                                                 <?php echo handleGender($i) ?>
                                             </label>
@@ -64,15 +64,33 @@ require_once ADMIN . 'functions/handleStatus.php';
                                 </div>
                                 <div class="form-group-inner">
                                     <label>Mật khẩu</label>
-                                    <input type="password" name="password" class="form-control" placeholder="nhập mật khẩu" />
+                                    <div class="field-group">
+                                        <input type="password" name="password" class="form-control" placeholder="nhập mật khẩu" />
+                                        <div class="toggle-password">
+                                            <i class="fa fa-eye eye-open eye"></i>
+                                            <i class="fa fa-eye-slash eye-close eye"></i>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group-inner">
                                     <label>Mật khẩu mới</label>
-                                    <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="nhập mật khẩu mới" />
+                                    <div class="field-group">
+                                        <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="nhập mật khẩu mới" />
+                                        <div class="toggle-password">
+                                            <i class="fa fa-eye eye-open eye"></i>
+                                            <i class="fa fa-eye-slash eye-close eye"></i>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group-inner">
                                     <label>Nhập lại mật khẩu mới</label>
-                                    <input type="password" name="reNewPassword" class="form-control" placeholder="nhập lại mật khẩu mới" />
+                                    <div class="field-group">
+                                        <input type="password" name="reNewPassword" class="form-control" placeholder="nhập lại mật khẩu mới" />
+                                        <div class="toggle-password">
+                                            <i class="fa fa-eye eye-open eye"></i>
+                                            <i class="fa fa-eye-slash eye-close eye"></i>
+                                        </div>
+                                    </div>
                                 </div>
                                 <input type="submit" value="Cập nhập" class="btn btn-primary">
                             </div>
@@ -97,4 +115,5 @@ require_once ADMIN . 'includes/footer.php';
         }
     };
 </script>
+<script src="/admin/js/handlePasswordVisible.js"></script>
 <script src="ajaxProfile.js"></script>

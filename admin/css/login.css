@@ -301,6 +301,29 @@ main.sign-up-mode .carousel {
   background-color: #151111;
   border-radius: 1rem;
 }
+.field-group {
+  width: 100%;
+  position: relative;
+   height: 100%;
+}
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+}
+
+.eye-open {
+  display: none;
+}
+
+.eye-open.is-active {
+  display: block;
+}
+
+.eye-open.is-active + .eye-close {
+  display: none;
+}
 
 @media (max-width: 850px) {
   .box {

@@ -3,6 +3,7 @@
   <script src="/admin/js/jquery.validate.min.js"></script>
   <script src="/admin/js/toastr.min.js"></script>
   <script src="/admin/js/login.js"></script>
+  <script src="/admin/js/handlePasswordVisible.js"></script>
   <script src="ajaxLogin.js"></script>
   </body>
 

@@ -45,7 +45,8 @@ $(document).ready(function () {
             $("#formInsert")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
-            $(".tableProducts").load(location.href + " .tableProducts");
+            location.reload();
+            // $(".tableProducts").load(location.href + " .tableProducts");
           } else {
             toastr.options.escapeHtml = true;
 
@@ -111,7 +112,8 @@ $(document).ready(function () {
             $("#formUpdate")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
-            $(".tableProducts").load(location.href + " .tableProducts");
+            location.reload();
+            // $(".tableProducts").load(location.href + " .tableProducts");
           } else {
             toastr.options.escapeHtml = true;
 
@@ -263,7 +265,8 @@ $(document).ready(function () {
             var res = jQuery.parseJSON(response);
             if (res.status == 200) {
               Swal.fire("Thành công", res.message, "success");
-              $(".tableProducts").load(location.href + " .tableProducts");
+              location.reload();
+              // $(".tableProducts").load(location.href + " .tableProducts");
             } else {
               toastr.options.escapeHtml = true;
 

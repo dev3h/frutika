@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once './check_login.php';
 $id = $_GET['id'];
 $type = $_GET['type'];
 

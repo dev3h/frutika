@@ -10,36 +10,36 @@ $username = $_SESSION['username'];
 if (isset($_POST['lock_account'])) {
     $id = $conn->real_escape_string($_POST['id']);
 
-    $query = "SELECT * FROM admin WHERE username = '$username'";
+    $query = "SELECT * FROM admin WHERE id = '$id'";
     $query_run = Database::getInstance()->query($query);
     if ($query_run && $query_run->num_rows > 0) {
         $each = $query_run->fetch_assoc();
-        if ($each['role'] == 1) {
+        if ($each['username'] == $username) {
             $res = [
                 'status' => 403,
-                'message' => 'Bạn là admin đang đăng nhập bằng tài khoản này'
-            ];
-            echo json_encode($res);
-            return false;
-        }
-    } else {
-        $query = "UPDATE admin SET status = '0'  WHERE id=' $id'";
-        $query_run = Database::getInstance()->query($query);
-
-        if ($query_run) {
-            $res = [
-                'status' => 200,
-                'message' => 'khóa tài khoản thành công'
+                'message' => 'Bạn đang đăng nhập bằng tài khoản này'
             ];
             echo json_encode($res);
             return false;
         } else {
-            $res = [
-                'status' => 500,
-                'message' => 'khóa tài khoản thất bại'
-            ];
-            echo json_encode($res);
-            return false;
+            $query = "UPDATE admin SET status = '0'  WHERE id=' $id'";
+            $query_run = Database::getInstance()->query($query);
+
+            if ($query_run) {
+                $res = [
+                    'status' => 200,
+                    'message' => 'khóa tài khoản thành công'
+                ];
+                echo json_encode($res);
+                return false;
+            } else {
+                $res = [
+                    'status' => 500,
+                    'message' => 'khóa tài khoản thất bại'
+                ];
+                echo json_encode($res);
+                return false;
+            }
         }
     }
 }

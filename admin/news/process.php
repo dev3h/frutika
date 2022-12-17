@@ -31,7 +31,6 @@ if (isset($_POST['delete_news'])) {
 if (isset($_POST['update_news'])) {
     $id = $conn->real_escape_string($_POST['id']);
     $title = $conn->real_escape_string($_POST['title']);
-    $url = $conn->real_escape_string($_POST['url']);
     $content = $conn->real_escape_string($_POST['content']);
 
     $extensions = array("jpeg", "jpg", "png");
@@ -76,7 +75,7 @@ if (isset($_POST['update_news'])) {
         return false;
     }
 
-    $query = "UPDATE posts SET title='$title', photo = '$file_name', url='$url', content='$content' WHERE id='$id'";
+    $query = "UPDATE posts SET title='$title', photo = '$file_name', content='$content' WHERE id='$id'";
     $query_run = Database::getInstance()->query($query);
 
     if ($query_run) {

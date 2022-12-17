@@ -2,6 +2,7 @@
 
 session_start();
 require_once './classes/db.php';
+require_once './check_login.php';
 $conn = Database::getConnection();
 
 $product_quantity = 1;

@@ -46,7 +46,7 @@ $comments = Database::getInstance()->query($sql);
 					<p><?php echo $each['short_description'] ?></p>
 					<div class="single-product-form">
 						<form method="get" id="single-product-form">
-							<input type="number" name="quantity-product" value="1" class="quantityProduct">
+							<input type="number" name="quantity-product" value="1" min="1" class="quantityProduct">
 							<input type="hidden" name="id" value="<?php echo $each['id'] ?>" class="quantityProduct">
 							<button class="cart-btn" value="<?php echo $each['id'] ?>"><i class="fas fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
 						</form>

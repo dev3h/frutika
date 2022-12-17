@@ -1,5 +1,4 @@
 <body>
-
     <figure class="highcharts-figure">
         <div id="container-1"></div>
     </figure>

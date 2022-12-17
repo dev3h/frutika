@@ -23,11 +23,12 @@ $(document).ready(function () {
         success: function (response) {
           const res = jQuery.parseJSON(response);
           if (res.status == 200) {
-           $("#modalCategoryInsert").modal("hide");
-           $("#formInsert")[0].reset();
-           Swal.fire("Thành công", res.message, "success");
+            $("#modalCategoryInsert").modal("hide");
+            $("#formInsert")[0].reset();
+            Swal.fire("Thành công", res.message, "success");
 
-           $(".tableCategories").load(location.href + " .tableCategories");
+            location.reload();
+            //  $(".tableCategories").load(location.href + " .tableCategories");
           } else {
             toastr.options.escapeHtml = true;
 
@@ -57,12 +58,12 @@ $(document).ready(function () {
 
   $("#formUpdate").validate({
     rules: {
-      "name": {
+      name: {
         required: true,
       },
     },
     messages: {
-      "name": {
+      name: {
         required: "Bắt buộc nhập tên danh mục",
       },
     },
@@ -78,11 +79,12 @@ $(document).ready(function () {
         success: function (response) {
           const res = jQuery.parseJSON(response);
           if (res.status == 200) {
-           $("#modalCategoryUpdate").modal("hide");
-           $("#formUpdate")[0].reset();
-           Swal.fire("Thành công", res.message, "success");
+            $("#modalCategoryUpdate").modal("hide");
+            $("#formUpdate")[0].reset();
+            Swal.fire("Thành công", res.message, "success");
 
-           $(".tableCategories").load(location.href + " .tableCategories");
+            location.reload();
+            //  $(".tableCategories").load(location.href + " .tableCategories");
           } else {
             toastr.options.escapeHtml = true;
 
@@ -119,9 +121,9 @@ $(document).ready(function () {
       success: function (response) {
         var res = jQuery.parseJSON(response);
         if (res.status == 200) {
-         $("#category_id").val(res.data.id);
-         $("#category_name").val(res.data.name);
-         $("#modalCategoryUpdate").modal("show");
+          $("#category_id").val(res.data.id);
+          $("#category_name").val(res.data.name);
+          $("#modalCategoryUpdate").modal("show");
         } else {
           toastr.options.escapeHtml = true;
 
@@ -156,8 +158,8 @@ $(document).ready(function () {
       success: function (response) {
         var res = jQuery.parseJSON(response);
         if (res.status == 200) {
-         $("#view_name").text(res.data.name);
-         $("#modalCategoryView").modal("show");
+          $("#view_name").text(res.data.name);
+          $("#modalCategoryView").modal("show");
         } else {
           toastr.options.escapeHtml = true;
 
@@ -207,29 +209,30 @@ $(document).ready(function () {
           success: function (response) {
             var res = jQuery.parseJSON(response);
             if (res.status == 200) {
-               Swal.fire("Thành công", res.message, "success");
-               $(".tableCategories").load(location.href + " .tableCategories");
+              Swal.fire("Thành công", res.message, "success");
+              location.reload();
+              //  $(".tableCategories").load(location.href + " .tableCategories");
             } else {
-            toastr.options.escapeHtml = true;
+              toastr.options.escapeHtml = true;
 
-            toastr.options = {
-              closeButton: true,
-              debug: false,
-              newestOnTop: false,
-              progressBar: false,
-              positionClass: "toast-top-right",
-              preventDuplicates: true,
-              onclick: null,
-              showDuration: "300",
-              hideDuration: "1000",
-              timeOut: "5000",
-              extendedTimeOut: "1000",
-              showEasing: "swing",
-              hideEasing: "linear",
-              showMethod: "fadeIn",
-              hideMethod: "fadeOut",
-            };
-            toastr["error"](res.message, "Lỗi");
+              toastr.options = {
+                closeButton: true,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+              };
+              toastr["error"](res.message, "Lỗi");
             }
           },
         });

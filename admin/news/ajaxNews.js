@@ -1,23 +1,23 @@
 $(document).ready(function () {
   // handle button in form
-   $("#formInsert").validate({
-     rules: {
-       title: {
-         required: true,
-       },
-     },
-     messages: {
-       title: {
-         required: "Bắt buộc nhập tiêu đề bài viết",
-       },
-       price: {
-         required: "Bắt buộc nhập giá sản phẩm",
-         number: "Giá sản phẩm phải là số",
-         min: "Giá sản phẩm phải lớn hơn hoặc bằng 1000",
-       },
-     },
-     submitHandler: function () {
-       var formData = new FormData(document.querySelector("#formInsert"));
+  $("#formInsert").validate({
+    rules: {
+      title: {
+        required: true,
+      },
+    },
+    messages: {
+      title: {
+        required: "Bắt buộc nhập tiêu đề bài viết",
+      },
+      price: {
+        required: "Bắt buộc nhập giá sản phẩm",
+        number: "Giá sản phẩm phải là số",
+        min: "Giá sản phẩm phải lớn hơn hoặc bằng 1000",
+      },
+    },
+    submitHandler: function () {
+      var formData = new FormData(document.querySelector("#formInsert"));
       formData.append("save_news", true);
       $.ajax({
         url: "process.php",
@@ -34,89 +34,91 @@ $(document).ready(function () {
             $("#formInsert")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
-            $(".tableNews").load(location.href + " .tableNews");
+            location.reload();
+            // $(".tableNews").load(location.href + " .tableNews");
           } else {
-           toastr.options.escapeHtml = true;
+            toastr.options.escapeHtml = true;
 
-           toastr.options = {
-             closeButton: true,
-             debug: false,
-             newestOnTop: false,
-             progressBar: false,
-             positionClass: "toast-top-right",
-             preventDuplicates: true,
-             onclick: null,
-             showDuration: "300",
-             hideDuration: "1000",
-             timeOut: "5000",
-             extendedTimeOut: "1000",
-             showEasing: "swing",
-             hideEasing: "linear",
-             showMethod: "fadeIn",
-             hideMethod: "fadeOut",
-           };
-           toastr["error"](res.message, "Lỗi");
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
           }
         },
       });
-     },
-   });
+    },
+  });
 
-    $("#formUpdate").validate({
-      rules: {
-        title: {
-          required: true,
+  $("#formUpdate").validate({
+    rules: {
+      title: {
+        required: true,
+      },
+    },
+    messages: {
+      title: {
+        required: "Bắt buộc nhập tiêu đề bài viết",
+      },
+    },
+    submitHandler: function () {
+      var formData = new FormData(document.querySelector("#formUpdate"));
+      formData.append("update_news", true);
+      $.ajax({
+        url: "process.php",
+        type: "post",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          const res = jQuery.parseJSON(response);
+          if (res.status == 200) {
+            $("#errorMessageUpdate").addClass("hidden");
+            $("#modalNewsUpdate").modal("hide");
+            $("#formUpdate")[0].reset();
+            Swal.fire("Thành công", res.message, "success");
+
+            location.reload();
+            // $(".tableNews").load(location.href + " .tableNews");
+          } else {
+            toastr.options.escapeHtml = true;
+
+            toastr.options = {
+              closeButton: true,
+              debug: false,
+              newestOnTop: false,
+              progressBar: false,
+              positionClass: "toast-top-right",
+              preventDuplicates: true,
+              onclick: null,
+              showDuration: "300",
+              hideDuration: "1000",
+              timeOut: "5000",
+              extendedTimeOut: "1000",
+              showEasing: "swing",
+              hideEasing: "linear",
+              showMethod: "fadeIn",
+              hideMethod: "fadeOut",
+            };
+            toastr["error"](res.message, "Lỗi");
+          }
         },
-      },
-      messages: {
-        title: {
-          required: "Bắt buộc nhập tiêu đề bài viết",
-        },
-      },
-      submitHandler: function () {
-        var formData = new FormData(document.querySelector("#formInsert"));
-         formData.append("update_news", true);
-         $.ajax({
-           url: "process.php",
-           type: "post",
-           data: formData,
-           processData: false,
-           contentType: false,
-           success: function (response) {
-             const res = jQuery.parseJSON(response);
-             if (res.status == 200) {
-               $("#errorMessageUpdate").addClass("hidden");
-               $("#modalNewsUpdate").modal("hide");
-               $("#formUpdate")[0].reset();
-               Swal.fire("Thành công", res.message, "success");
-
-               $(".tableNews").load(location.href + " .tableNews");
-             } else {
-              toastr.options.escapeHtml = true;
-
-              toastr.options = {
-                closeButton: true,
-                debug: false,
-                newestOnTop: false,
-                progressBar: false,
-                positionClass: "toast-top-right",
-                preventDuplicates: true,
-                onclick: null,
-                showDuration: "300",
-                hideDuration: "1000",
-                timeOut: "5000",
-                extendedTimeOut: "1000",
-                showEasing: "swing",
-                hideEasing: "linear",
-                showMethod: "fadeIn",
-                hideMethod: "fadeOut",
-              };
-              toastr["error"](res.message, "Lỗi");
-             }
-           },
-         });
-      },
-    });
+      });
+    },
+  });
 
   // handle button in table
   $(".updateNewsBtn").click(function () {
@@ -127,36 +129,36 @@ $(document).ready(function () {
       success: function (response) {
         var res = jQuery.parseJSON(response);
         if (res.status == 200) {
-           $("#news_id").val(res.data.id);
-           $("#news_title").val(res.data.title);
-           $("#news_url").val(res.data.url);
-           $(".summernote.news-content").summernote("code", `<p>${res.data.content}</p>`);
-           $("#photo_old").attr("src", `/admin/assets/uploads/news/${res.data.photo}`);
-           $("#photo_old").attr("alt", `bac-and-chill-${res.data.title}`);
-           $("#news_photo_old").val(res.data.photo);
+          $("#news_id").val(res.data.id);
+          $("#news_title").val(res.data.title);
+          $("#news_url").val(res.data.url);
+          $(".summernote.news-content").summernote("code", `<p>${res.data.content}</p>`);
+          $("#photo_old").attr("src", `/admin/assets/uploads/news/${res.data.photo}`);
+          $("#photo_old").attr("alt", `bac-and-chill-${res.data.title}`);
+          $("#news_photo_old").val(res.data.photo);
 
-           $("#modalNewsUpdate").modal("show");
+          $("#modalNewsUpdate").modal("show");
         } else {
-         toastr.options.escapeHtml = true;
+          toastr.options.escapeHtml = true;
 
-         toastr.options = {
-           closeButton: true,
-           debug: false,
-           newestOnTop: false,
-           progressBar: false,
-           positionClass: "toast-top-right",
-           preventDuplicates: true,
-           onclick: null,
-           showDuration: "300",
-           hideDuration: "1000",
-           timeOut: "5000",
-           extendedTimeOut: "1000",
-           showEasing: "swing",
-           hideEasing: "linear",
-           showMethod: "fadeIn",
-           hideMethod: "fadeOut",
-         };
-         toastr["error"](res.message, "Lỗi");
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -177,26 +179,26 @@ $(document).ready(function () {
           $("#view_photo").attr("alt", `bac-and-chill-${res.data.name}`);
           $("#modalNewsView").modal("show");
         } else {
-         toastr.options.escapeHtml = true;
+          toastr.options.escapeHtml = true;
 
-         toastr.options = {
-           closeButton: true,
-           debug: false,
-           newestOnTop: false,
-           progressBar: false,
-           positionClass: "toast-top-right",
-           preventDuplicates: true,
-           onclick: null,
-           showDuration: "300",
-           hideDuration: "1000",
-           timeOut: "5000",
-           extendedTimeOut: "1000",
-           showEasing: "swing",
-           hideEasing: "linear",
-           showMethod: "fadeIn",
-           hideMethod: "fadeOut",
-         };
-         toastr["error"](res.message, "Lỗi");
+          toastr.options = {
+            closeButton: true,
+            debug: false,
+            newestOnTop: false,
+            progressBar: false,
+            positionClass: "toast-top-right",
+            preventDuplicates: true,
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "5000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut",
+          };
+          toastr["error"](res.message, "Lỗi");
         }
       },
     });
@@ -225,29 +227,30 @@ $(document).ready(function () {
           success: function (response) {
             var res = jQuery.parseJSON(response);
             if (res.status == 200) {
-               Swal.fire("Thành công", res.message, "success");
-               $(".tableNews").load(location.href + " .tableNews");
+              Swal.fire("Thành công", res.message, "success");
+              location.reload();
+              // $(".tableNews").load(location.href + " .tableNews");
             } else {
-             toastr.options.escapeHtml = true;
+              toastr.options.escapeHtml = true;
 
-             toastr.options = {
-               closeButton: true,
-               debug: false,
-               newestOnTop: false,
-               progressBar: false,
-               positionClass: "toast-top-right",
-               preventDuplicates: true,
-               onclick: null,
-               showDuration: "300",
-               hideDuration: "1000",
-               timeOut: "5000",
-               extendedTimeOut: "1000",
-               showEasing: "swing",
-               hideEasing: "linear",
-               showMethod: "fadeIn",
-               hideMethod: "fadeOut",
-             };
-             toastr["error"](res.message, "Lỗi");
+              toastr.options = {
+                closeButton: true,
+                debug: false,
+                newestOnTop: false,
+                progressBar: false,
+                positionClass: "toast-top-right",
+                preventDuplicates: true,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                timeOut: "5000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+              };
+              toastr["error"](res.message, "Lỗi");
             }
           },
         });

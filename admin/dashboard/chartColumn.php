@@ -1,6 +1,6 @@
 <body>
     <figure class="highcharts-figure">
-        <div id="container-2"></div>
+        <div id="container"></div>
     </figure>
     <script src="/assets/js/jquery-1.11.3.min.js"></script>
     <script>
@@ -28,7 +28,7 @@
 
             function getChart(arr, arrDetail) {
                 console.log(arrDetail);
-                Highcharts.chart('container-2', {
+                Highcharts.chart('container', {
                     chart: {
                         type: 'column'
                     },

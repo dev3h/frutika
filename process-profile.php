@@ -1,6 +1,8 @@
 <?php
+session_start();
 require_once './classes/db.php';
 require_once './path.php';
+require_once './check_login.php';
 $conn = Database::getConnection();
 
 function handleCorrectPass($id, $password)

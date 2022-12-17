@@ -129,7 +129,7 @@ require_once 'includes/header.php';
 				<div class="text">Dâu anh đào nhật chúng có mùi thơm rõ nét, kích thước lớn, vị ngọt thanh đặc trưng, căng mọng hơn rất nhiều, đồng thời lại giàu các loại vitamin A, C, E và các đặc tính chống lão hóa tốt, ít calo, tăng chất xơ. Ngoài ra, nguồn gốc xuất xứ Nhật Bản cũng là yếu tố khiến loại quả này được 'sủng ái' và khiến khách hàng sẵn sàng chi mạnh hầu bao để mua.</div>
 				<!--Countdown Timer-->
 				<div class="time-counter">
-					<div class="time-countdown clearfix" data-countdown="2022/12/01">
+					<div class="time-countdown clearfix" data-countdown="2023/02/01">
 						<div class="counter-column">
 							<div class="inner"><span class="count">00</span>Days</div>
 						</div>
@@ -157,49 +157,29 @@ require_once 'includes/header.php';
 		<div class="row">
 			<div class="col-lg-10 offset-lg-1 text-center">
 				<div class="testimonial-sliders">
+					<?php
+					require_once 'classes/db.php';
+					$query = "SELECT products_rating.*, customers.name as customer_name, photo FROM products_rating JOIN customers ON customer_id = customers.id WHERE rating >= 4.5  ORDER BY RAND() LIMIT 3";
+					$query_run = Database::getInstance()->query($query);
+					if($query_run && $query_run->num_rows > 0) {
+						foreach ($query_run as $each) {
+					?>
 					<div class="single-testimonial-slider">
 						<div class="client-avater">
-							<img src="assets/img/avaters/avatar1.png" alt="">
+							<img src="/admin/assets/uploads/customers/<?php echo $each['photo'] ?>" alt="" width="100" height="100" style="object-fit:cover">
 						</div>
 						<div class="client-meta">
-							<h3>Hoàng Huy Văn</h3>
+							<h3><?php echo $each['customer_name'] ?></h3>
 							<div class="last-icon">
-								<span>5</span><i class="fas fa-star"></i>
+								<span><?php echo $each['rating'] ?></span><i class="fas fa-star"></i>
 							</div>
 							<p class="testimonial-body">
-								"Sản phẩm ở đây rất tươi, đóng gói cẩn thận"
+								"<?php echo $each['comment'] ?>"
 							</p>
 
 						</div>
 					</div>
-					<div class="single-testimonial-slider">
-						<div class="client-avater">
-							<img src="assets/img/avaters/avatar2.png" alt="">
-						</div>
-						<div class="client-meta">
-							<h3>Hoa Văn Mai</h3>
-							<div class="last-icon">
-								<span>4.5</span><i class="fas fa-star"></i>
-							</div>
-							<p class="testimonial-body">
-								"Dâu ở đây rất ngon, đóng gói cẩn thận"
-							</p>
-						</div>
-					</div>
-					<div class="single-testimonial-slider">
-						<div class="client-avater">
-							<img src="assets/img/avaters/avatar3.png" alt="">
-						</div>
-						<div class="client-meta">
-							<h3>Nguyễn Mai Anh</h3>
-							<div class="last-icon">
-								<span>5</span><i class="fas fa-star"></i>
-							</div>
-							<p class="testimonial-body">
-								"Sản phẩm tươi ngon, shop tư vấn nhiệt tình, giao hàng nhanh"
-							</p>
-						</div>
-					</div>
+					<?php } } ?>
 				</div>
 			</div>
 		</div>

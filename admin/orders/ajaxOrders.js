@@ -15,7 +15,8 @@ $(document).ready(function () {
         if (res.status == 200) {
           Swal.fire("Thành công", res.message, "success");
 
-          $(".tableOrder").load(location.href + " .tableOrder");
+          location.reload();
+          // $(".tableOrder").load(location.href + " .tableOrder");
         } else {
           toastr.options.escapeHtml = true;
 
@@ -58,7 +59,8 @@ $(document).ready(function () {
         if (res.status == 200) {
           Swal.fire("Thành công", res.message, "success");
 
-          $(".tableOrder").load(location.href + " .tableOrder");
+          location.reload();
+          // $(".tableOrder").load(location.href + " .tableOrder");
         } else {
           toastr.options.escapeHtml = true;
 
@@ -112,15 +114,15 @@ $(document).ready(function () {
                  <td>${item.quantity * item.price}</td>
               </tr>
               `;
-            }
+            };
             $.each(orders, function (key, obj) {
               html += getOrderInfo(obj);
               totalPrice = obj.price * obj.quantity;
               sum += totalPrice;
             });
-            table_view_order.html('');
+            table_view_order.html("");
             table_view_order.append(html);
-            value_of_order.html('');
+            value_of_order.html("");
             value_of_order.append(`Tổng giá trị của đơn hàng: ${handleCurrency(sum)}`);
           }
           $("#modalCategoryView").modal("show");

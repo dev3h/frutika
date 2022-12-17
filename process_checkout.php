@@ -1,13 +1,13 @@
 <?php
+session_start();
 require './classes/db.php';
+require_once './check_login.php';
 $conn = Database::getConnection();
 
 try {
     $name_receiver = $conn->real_escape_string($_POST['name_receiver']);
     $phone_receiver = $conn->real_escape_string($_POST['phone_receiver']);
     $address_receiver = $conn->real_escape_string($_POST['address_receiver']);
-
-    session_start();
 
     $cart = $_SESSION['cart'];
 

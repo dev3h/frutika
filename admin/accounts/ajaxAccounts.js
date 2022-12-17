@@ -65,7 +65,8 @@ $(document).ready(function () {
             $("#formInsert")[0].reset();
             Swal.fire("Thành công", res.message, "success");
 
-            $(".tableAccount").load(location.href + " .tableAccount");
+            location.reload();
+            // $(".tableAccount").load(location.href + " .tableAccount");
           } else {
            toastr.options.escapeHtml = true;
 
@@ -135,7 +136,8 @@ $(document).ready(function () {
            $("#formUpdate")[0].reset();
            Swal.fire("Thành công", res.message, "success");
 
-           $(".tableAccount").load(location.href + " .tableAccount");
+            location.reload();
+          //  $(".tableAccount").load(location.href + " .tableAccount");
           } else  {
            toastr.options.escapeHtml = true;
 
@@ -285,7 +287,8 @@ $(document).ready(function () {
             var res = jQuery.parseJSON(response);
             if (res.status == 200) {
               Swal.fire("Thành công", res.message, "success");
-              $(".tableAccount").load(location.href + " .tableAccount");
+            location.reload();
+              // $(".tableAccount").load(location.href + " .tableAccount");
             } else {
              toastr.options.escapeHtml = true;
 

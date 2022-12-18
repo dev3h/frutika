@@ -1,5 +1,6 @@
 <?php
 $title = 'Trang chủ';
+
 require_once 'includes/header.php';
 ?>
 

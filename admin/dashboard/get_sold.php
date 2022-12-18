@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 require '../classes/db.php';
+
 $max_date = $_GET['days'];
 $sql = "SELECT products.id as 'ma_san_pham',
 products.name as 'ten_san_pham', DATE_FORMAT(create_at,'%e-%m') as 'ngay', SUM(quantity) as 'so_san_pham_ban_duoc' 

@@ -2,19 +2,13 @@
 
 session_start();
 require_once './classes/db.php';
-require_once './check_login.php';
+
 $conn = Database::getConnection();
+$customer_id =$_SESSION['id'];
 
 $product_quantity = 1;
-if (!isset($_SESSION['id'])) {
-    $res = [
-        'status' => 302,
-        'message' => 'Yêu cầu đăng nhập',
-        'redirect' => '/login-register'
-    ];
-    echo json_encode($res);
-    return false;
-};
+$customer_id = $_SESSION['id'];
+
 if (isset($_POST['add_product_to_cart'])) {
     $product_quantity = $conn->real_escape_string($_POST['quantity-product']);
 }
@@ -38,20 +32,20 @@ if ($result->num_rows == 0) {
     $each = $result->fetch_assoc();
     $name = $each['name'];
 }
-if (empty($_SESSION['cart'][$id])) {
+if (empty($_SESSION['cart'][$customer_id][$id])) {
 
-    $_SESSION['cart'][$id]['name'] = $name;
-    $_SESSION['cart'][$id]['photo'] = $each['photo'];
-    $_SESSION['cart'][$id]['price'] = $each['price'];
-    $_SESSION['cart'][$id]['quantity'] = $product_quantity;
+    $_SESSION['cart'][$customer_id][$id]['name'] = $name;
+    $_SESSION['cart'][$customer_id][$id]['photo'] = $each['photo'];
+    $_SESSION['cart'][$customer_id][$id]['price'] = $each['price'];
+    $_SESSION['cart'][$customer_id][$id]['quantity'] = $product_quantity;
 
     $res = [
         'status' => 200,
         'message' => "Thêm thành công " . $name . ' vào giỏ hàng',
-        'data' => sizeof($_SESSION['cart'])
+        'data' => sizeof($_SESSION['cart'][$customer_id])
     ];
 } else {
-    $_SESSION['cart'][$id]['quantity'] += $product_quantity;
+    $_SESSION['cart'][$customer_id][$id]['quantity'] += $product_quantity;
 
     $res = [
         'status' => 200,

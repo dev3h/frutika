@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once './classes/db.php';
-require_once './check_login.php';
+
 $conn = Database::getConnection();
 
 if (!isset($_SESSION['id'])) {

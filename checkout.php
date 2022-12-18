@@ -4,8 +4,9 @@ require_once 'includes/header.php';
 require_once 'functions/handleCurrency.php';
 
 $cart = null;
+$customer_id = $_SESSION['id'];
 if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'];
+	$cart = $_SESSION['cart'][$customer_id];
 }
 $payment = 0;
 $shipping = 20000;
@@ -45,9 +46,9 @@ $shipping = 20000;
 								<div class="card-body">
 									<div class="billing-address-form">
 										<?php
-										$id = $_SESSION['id'];
+
 										require_once './classes/db.php';
-										$sql = "SELECT * FROM customers WHERE id = '$id'";
+										$sql = "SELECT * FROM customers WHERE id = '$customer_id'";
 										$result = Database::getInstance()->query($sql);
 										$each = $result->fetch_assoc();
 

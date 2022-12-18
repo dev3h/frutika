@@ -97,8 +97,17 @@
                                             if (isset($_SESSION['id'])) { ?>
                                                 <span id="cart-quantity">
                                                     <?php
+                                                    $customer_id = $_SESSION['id'];
                                                     if (isset($_SESSION['cart'])) {
-                                                        echo sizeof($_SESSION['cart']);
+                                                        if (sizeof($_SESSION['cart']) > 0) {
+                                                            if(isset($_SESSION['cart'][$customer_id])){
+                                                                $cart = $_SESSION['cart'][$customer_id];
+                                                                echo sizeof($cart);
+                                                            } else {
+                                                                echo 0;
+                                                            }
+                                                            
+                                                        } 
                                                     } else {
                                                         echo 0;
                                                     }

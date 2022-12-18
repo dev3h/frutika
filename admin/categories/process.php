@@ -1,5 +1,7 @@
 <?php
+session_start();
 require '../classes/db.php';
+
 $conn = Database::getConnection();
 
 // DELETE category

@@ -1,7 +1,8 @@
 <?php
 session_start();
+$customer_id = $_SESSION['id'];
 require './classes/db.php';
-require_once './check_login.php';
+
 $conn = Database::getConnection();
 
 try {
@@ -9,13 +10,13 @@ try {
     $phone_receiver = $conn->real_escape_string($_POST['phone_receiver']);
     $address_receiver = $conn->real_escape_string($_POST['address_receiver']);
 
-    $cart = $_SESSION['cart'];
+    $cart = $_SESSION['cart'][$customer_id];
 
     $total_price = 0;
     foreach ($cart as $each) {
         $total_price += $each['quantity'] * $each['price'];
     }
-    $customer_id = $_SESSION['id'];
+
     $status = 0;
 
     $sql = "INSERT INTO orders( customer_id ,  name_receiver ,  phone_receiver ,  address_receiver ,  status ,  totalPrice ) 

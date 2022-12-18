@@ -2,6 +2,7 @@
 session_start();
 require_once '../classes/db.php';
 require_once '../path.php';
+
 $conn = Database::getConnection();
 
 $username = $_SESSION['username'];

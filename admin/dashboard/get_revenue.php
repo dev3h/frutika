@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 require_once '../classes/db.php';
+
 $max_date = $_GET['days'];
 $sql = "SELECT DATE_FORMAT(create_at,'%e-%m') as 'ngay', SUM(totalPrice) as 'doanh thu' 
     FROM orders 

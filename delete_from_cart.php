@@ -1,12 +1,12 @@
 <?php
 
 session_start();
-require_once './check_login.php';
 
+$customer_id = $_SESSION['id'];
 $id = $_GET['id'];
-unset($_SESSION['cart'][$id]);
+unset($_SESSION['cart'][$customer_id][$id]);
 $res = [
-    'data' => sizeof($_SESSION['cart']),
+    'data' => sizeof($_SESSION['cart'][$customer_id]),
 ];
 echo json_encode($res);
 return false;

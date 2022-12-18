@@ -42,7 +42,7 @@ $(document).ready(function () {
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                         </p>
-                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <p class="excerpt">${obj.content}</p>
                         <a href="./post/${obj.url}.html" class="read-more-btn">đọc thêm <i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>

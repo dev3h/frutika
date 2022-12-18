@@ -1,6 +1,6 @@
 <?php
 require_once '../path.php';
-$title = 'Quản lý tài khoản khách hàng';
+$title = 'Quản lý tài khoản nhân viên';
 $current = 'Quản lý tài khoản';
 require_once ADMIN . 'includes/sidebar.php';
 require_once '../check_super_admin_login.php';

@@ -7,7 +7,7 @@ require_once 'functions/handleCurrency.php';
 $cart = null;
 $customer_id = $_SESSION['id'];
 if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'][$customer_id];
+	$cart = $_SESSION['cart'][$customer_id] ?? null;
 }
 $sum = 0;
 $shipping = 20000;

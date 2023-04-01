@@ -15,7 +15,7 @@ $(document).ready(function () {
             $.trim(cartQuantity.text(res.data));
           }
           Swal.fire("Thành công", res.message, "success");
-        } else if (res.status == 302) {
+        } else if (res.status == 307) {
           location.href = res.redirect;
         } else {
           toastr.options.escapeHtml = true;
@@ -61,7 +61,7 @@ $(document).ready(function () {
       formData.append("add_product_to_cart", true);
       $.ajax({
         url: "add_to_cart.php",
-        type: "post",
+        type: "get",
         data: formData,
         processData: false,
         contentType: false,

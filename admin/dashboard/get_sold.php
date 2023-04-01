@@ -8,7 +8,7 @@ products.name as 'ten_san_pham', DATE_FORMAT(create_at,'%e-%m') as 'ngay', SUM(q
     FROM orders 
     JOIN order_product ON orders.id = order_product.order_id
     JOIN products ON products.id = order_product.product_id
-    WHERE DATE(create_at) >= CURDATE() - INTERVAL 7 DAY
+    WHERE DATE(create_at) >= CURDATE() - INTERVAL $max_date DAY
     GROUP BY products.id, DATE_FORMAT(create_at,'%e-%m')";
 
 $result = Database::getInstance()->query($sql);

@@ -1,7 +1,7 @@
 <?php
 $title = 'Tài khoản';
-require_once 'includes/header.php';
-require_once 'functions/handleCurrency.php';
+require_once '../../includes/header.php';
+require_once '../../functions/handleCurrency.php';
 ?>
 
 <!-- breadcrumb-section -->
@@ -26,13 +26,13 @@ require_once 'functions/handleCurrency.php';
 
                     <form id="profileForm" method="post">
                         <?php
-                        require_once './classes/db.php';
-                        $query = "SELECT * FROM customers WHERE id='" . $_SESSION["id"] . "'";
-                        $query_run = Database::getInstance()->query($query);
-                        if ($query_run->num_rows == 1) {
-                            $each = $query_run->fetch_assoc();
-                        }
-                        ?>
+require_once '../../classes/db.php';
+$query = "SELECT * FROM customers WHERE id='" . $_SESSION["id"] . "'";
+$query_run = Database::getInstance()->query($query);
+if ($query_run->num_rows == 1) {
+    $each = $query_run->fetch_assoc();
+}
+?>
                         <div class="profile-img">
                             <div style="display: flex; align-items: flex-end; justify-content: center">
                                 <div class="image-container">
@@ -104,7 +104,7 @@ require_once 'functions/handleCurrency.php';
     </div>
 </div>
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../../includes/footer.php';?>
 <script>
     var loadFile = function(event) {
         var currentProfileImage = document.getElementById('current-profile-img');
@@ -114,5 +114,5 @@ require_once 'functions/handleCurrency.php';
         }
     };
 </script>
-<script src="/assets/js/handlePasswordVisible.js"></script>
-<script src="/assets/js/ajax/ajaxProfile.js"></script>
+<script src="../../assets/js/handlePasswordVisible.js"></script>
+<script src="../../assets/js/ajax/ajaxProfile.js"></script>

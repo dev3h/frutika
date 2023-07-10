@@ -1,6 +1,7 @@
 <?php
 $title = 'Liên hệ';
-require_once 'includes/header.php';
+require_once '../../includes/header.php';
+
 ?>
 
 <!-- breadcrumb-section -->
@@ -83,4 +84,4 @@ require_once 'includes/header.php';
 </div>
 <!-- end google map section -->
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../../includes/footer.php';?>

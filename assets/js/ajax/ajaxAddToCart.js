@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(".cart-btn").click(function () {
     let id = $(this).val();
     $.ajax({
-      url: "add_to_cart.php",
+      url: "/views/cart/add_to_cart.php",
       type: "GET",
       data: {
         id,

@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/db.php';
+require_once '../../classes/db.php';
 
 // if (isset($_COOKIE['remember'])) {
 //     $token = $_COOKIE['remember'];
@@ -36,9 +36,9 @@ if (isset($_SESSION['id'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Đăng ký đăng nhập</title>
-    <link rel="stylesheet" href="/assets/css/all.min.css">
-    <link rel="stylesheet" href="/assets/css/login-register.css" />
-    <link rel="stylesheet" href="/assets/css/toastr.min.css" />
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/login-register.css" />
+    <link rel="stylesheet" href="../../assets/css/toastr.min.css" />
 </head>
 
 <body>
@@ -148,13 +148,13 @@ if (isset($_SESSION['id'])) {
         </div>
     </div>
 
-    <script src="/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="/assets/js/jquery.validate.min.js"></script>
-    <script src="/assets/js/toastr.min.js"></script>
-    <script src="/assets/js/sweetalert2@11.js"></script>
-    <script src="/assets/js/login-register.js"></script>
-    <script src="/assets/js/handlePasswordVisible.js"></script>
-    <script src="/assets/js/ajax/ajax-login-register.js"></script>
+    <script src="../../assets/js/jquery-1.11.3.min.js"></script>
+    <script src="../../assets/js/jquery.validate.min.js"></script>
+    <script src="../../assets/js/toastr.min.js"></script>
+    <script src="../../assets/js/sweetalert2@11.js"></script>
+    <script src="../../assets/js/login-register.js"></script>
+    <script src="../../assets/js/handlePasswordVisible.js"></script>
+    <script src="../../assets/js/ajax/ajax-login-register.js"></script>
 </body>
 
 </html>

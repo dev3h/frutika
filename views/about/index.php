@@ -1,6 +1,6 @@
 <?php
 $title = 'Giới thiệu';
-require_once 'includes/header.php';
+require_once '../../includes/header.php';
 ?>
 
 <!-- breadcrumb-section -->
@@ -138,4 +138,4 @@ require_once 'includes/header.php';
 </div>
 <!-- end team section -->
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../../includes/footer.php';?>

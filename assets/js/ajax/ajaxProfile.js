@@ -35,7 +35,7 @@ $("#profileForm").validate({
     var formData = new FormData(document.querySelector("#profileForm"));
     formData.append("update_profile", true);
     $.ajax({
-      url: "process-profile.php",
+      url: "/views/profile/process-profile.php",
       type: "post",
       data: formData,
       processData: false,

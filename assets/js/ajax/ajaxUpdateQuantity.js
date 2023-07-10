@@ -4,7 +4,7 @@ $(document).ready(function () {
     let id = btn.data("id");
     let type = parseInt(btn.data("type"));
     $.ajax({
-      url: "processUpdateQuantity.php",
+      url: "/views/cart/processUpdateQuantity.php",
       type: "get",
       data: {
         id,
@@ -47,7 +47,7 @@ $(document).ready(function () {
     let btn = $(this);
     let id = btn.data("id");
     $.ajax({
-      url: "delete_from_cart.php",
+      url: "/views/cart/delete_from_cart.php",
       type: "get",
       data: {
         id,

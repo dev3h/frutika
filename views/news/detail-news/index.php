@@ -1,6 +1,6 @@
 <?php
 $title = $_GET['url'];
-require_once 'includes/header.php';
+require_once '../../../includes/header.php';
 ?>
 
 <!-- breadcrumb-section -->
@@ -26,18 +26,18 @@ require_once 'includes/header.php';
 				<div class="single-article-section">
 					<div class="single-article-text">
 						<?php
-						require_once 'classes/db.php';
-						$conn = Database::getConnection();
-						$url = $_GET['url'];
-						$query = "SELECT * FROM posts WHERE url = '$url'";
-						$query_run = mysqli_query($conn, $query);
-						if ($query_run->num_rows == 0) {
-							header("location: news.php");
-							exit;
-						} else {
-							$each = $query_run->fetch_assoc();
-						}
-						?>
+require_once '../../../classes/db.php';
+$conn = Database::getConnection();
+$url = $_GET['url'];
+$query = "SELECT * FROM posts WHERE url = '$url'";
+$query_run = mysqli_query($conn, $query);
+if ($query_run->num_rows == 0) {
+    header("location: news.php");
+    exit;
+} else {
+    $each = $query_run->fetch_assoc();
+}
+?>
 						<div class="single-artcile-bg">
 							<img src="/admin/assets/uploads/news/<?php echo $each['photo'] ?>" alt="frutika-news-<?php echo $each['title'] ?>" style="width: 100%; height: 100%; object-fit: cover">
 						</div>
@@ -124,10 +124,10 @@ require_once 'includes/header.php';
 						<h4>Tags</h4>
 						<ul>
 							<?php
-							$tags =  explode(",", $each['tags']);
-							foreach ($tags as $tag) { ?>
+$tags = explode(",", $each['tags']);
+foreach ($tags as $tag) {?>
 								<li><a href="single-news.html"><?php echo $tag ?></a></li>
-							<?php } ?>
+							<?php }?>
 						</ul>
 					</div>
 				</div>
@@ -138,4 +138,4 @@ require_once 'includes/header.php';
 <!-- end single article section -->
 
 
-<?php require_once 'includes/footer.php'; ?>
+<?php require_once '../../../includes/footer.php';?>

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once './classes/db.php';
+require_once '../../classes/db.php';
 
 $conn = Database::getConnection();
 
@@ -11,7 +11,7 @@ if ($customer_id == null) {
     $res = [
         'status' => 307,
         'message' => 'chưa đăng nhập',
-        'redirect' => 'login-register',
+        'redirect' => '/views/auth',
     ];
     echo json_encode($res);
     return false;

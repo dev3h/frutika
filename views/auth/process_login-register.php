@@ -1,10 +1,11 @@
 <?php
-require_once '../path.php';
+require_once '../../path.php';
 require_once ROOT . 'classes/db.php';
 $conn = Database::getConnection();
 
 // login
-function createToken($id) {
+function createToken($id)
+{
     $token = uniqid('user_', true);
     $sql = "UPDATE customers SET token = '$token' WHERE id='$id'";
     Database::getInstance()->query($sql);
@@ -21,10 +22,10 @@ if (isset($_POST['login'])) {
         $remember = false;
     }
 
-    if ($email == NULL || $password == NULL) {
+    if ($email == null || $password == null) {
         $res = [
             'status' => 422,
-            'message' => 'Vui lòng nhập đầy đủ thông tin'
+            'message' => 'Vui lòng nhập đầy đủ thông tin',
         ];
         echo json_encode($res);
         return false;
@@ -54,7 +55,7 @@ if (isset($_POST['login'])) {
     } else {
         $res = [
             'status' => 500,
-            'message' => 'Email hoặc mật khẩu không đúng'
+            'message' => 'Email hoặc mật khẩu không đúng',
         ];
         echo json_encode($res);
         return false;
@@ -69,10 +70,10 @@ if (isset($_POST['register'])) {
     $email = $conn->real_escape_string($_POST['email']);
     $password = $conn->real_escape_string($_POST['password']);
 
-    if ($email == NULL || $password == NULL || $name == NULL || $phone_number == NULL || $address == NULL) {
+    if ($email == null || $password == null || $name == null || $phone_number == null || $address == null) {
         $res = [
             'status' => 422,
-            'message' => 'Vui lòng nhập đầy đủ thông tin'
+            'message' => 'Vui lòng nhập đầy đủ thông tin',
         ];
         echo json_encode($res);
         return false;
@@ -84,7 +85,7 @@ if (isset($_POST['register'])) {
     if ($result->fetch_assoc() == 1) {
         $res = [
             'status' => 303,
-            'message' => 'Email đã tồn tại'
+            'message' => 'Email đã tồn tại',
         ];
         echo json_encode($res);
         return false;
@@ -96,9 +97,9 @@ if (isset($_POST['register'])) {
     if ($query_run) {
         $sql = "SELECT id from customers WHERE email = '$email'";
         $result = Database::getInstance()->query($sql);
-        if($result->num_rows == 1) {
+        if ($result->num_rows == 1) {
             $id = $result->fetch_assoc()['id'];
-            $_SESSION['id'] =$id;
+            $_SESSION['id'] = $id;
             $_SESSION['name'] = $each['name'];
             createToken($id);
             $res = [
@@ -111,7 +112,7 @@ if (isset($_POST['register'])) {
     } else {
         $res = [
             'status' => 500,
-            'message' => 'Đăng ký thất bại'
+            'message' => 'Đăng ký thất bại',
         ];
         echo json_encode($res);
         return false;

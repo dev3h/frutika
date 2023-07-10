@@ -1,13 +1,13 @@
 <?php
 $title = 'Giỏ hàng';
 
-require_once 'includes/header.php';
-require_once 'functions/handleCurrency.php';
+require_once '../../includes/header.php';
+require_once '../../functions/handleCurrency.php';
 
 $cart = null;
 $customer_id = $_SESSION['id'];
 if (isset($_SESSION['cart'])) {
-	$cart = $_SESSION['cart'][$customer_id] ?? null;
+    $cart = $_SESSION['cart'][$customer_id] ?? null;
 }
 $sum = 0;
 $shipping = 20000;
@@ -46,11 +46,11 @@ $shipping = 20000;
 						</thead>
 						<tbody>
 							<?php
-							if ($cart != null) {
-								foreach ($cart as $id => $each) { ?>
+if ($cart != null) {
+    foreach ($cart as $id => $each) {?>
 									<tr class="table-body-row">
 										<td class="product-remove"><button class="btn-delete" data-id="<?php echo $id ?>"><i class="far fa-window-close"></i></button></td>
-										<td class="product-image product-image-cart"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>" height=100 /></td>
+										<td class="product-image product-image-cart"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name']?>" height=100 /></td>
 										<td class="product-name"><?php echo $each['name'] ?></td>
 										<td class="product-price"><span class="span-price"><?php echo handleCurrency($each['price']) ?></span></td>
 										<td class="product-quantity"><button class="btn-update-quantity" data-id="<?php echo $id ?>" data-type='0'>-</button>
@@ -62,19 +62,19 @@ $shipping = 20000;
 										<td class="product-total">
 											<span class="span-sum">
 												<?php
-												$result = $each['price'] * $each['quantity'];
-												echo handleCurrency($result);
-												$sum += $result;
-												?>
+$result = $each['price'] * $each['quantity'];
+        echo handleCurrency($result);
+        $sum += $result;
+        ?>
 											</span>
 										</td>
 									</tr>
 								<?php }
-							} else { ?>
+} else {?>
 								<tr>
 									<td colspan="6" style="border: unset">Chưa có sản phẩm</td>
 								</tr>
-							<?php } ?>
+							<?php }?>
 						</tbody>
 					</table>
 				</div>
@@ -124,5 +124,5 @@ $shipping = 20000;
 </div>
 <!-- end cart -->
 
-<?php require_once 'includes/footer.php'; ?>
-<script src="/assets/js/ajax/ajaxUpdateQuantity.js"></script>
+<?php require_once '../../includes/footer.php';?>
+<script src="../../assets/js/ajax/ajaxUpdateQuantity.js"></script>

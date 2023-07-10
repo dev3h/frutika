@@ -1,6 +1,6 @@
 <?php
 $title = 'Bài viết';
-require_once 'includes/header.php';
+require_once '../../includes/header.php';
 ?>
 
 <!-- breadcrumb-section -->
@@ -21,9 +21,9 @@ require_once 'includes/header.php';
 <div class="latest-news mt-150 mb-150">
 	<div class="container">
 		<div class="row" id="news-content">
-			<?php require_once 'classes/db.php' ?>
-			<?php require_once 'seo_friendly.php' ?>
-			<?php require_once 'data-news.php' ?>
+			<?php require_once '../../classes/db.php'?>
+			<?php require_once './seo_friendly.php'?>
+			<?php require_once './data-news.php'?>
 		</div>
 
 		<div class="row">
@@ -39,5 +39,5 @@ require_once 'includes/header.php';
 </div>
 <!-- end latest news -->
 
-<?php require_once 'includes/footer.php'; ?>
-<script src="/assets/js/ajax/ajaxLoadMore.js"></script>
+<?php require_once '../../includes/footer.php';?>
+<script src="../../assets/js/ajax/ajaxLoadMore.js"></script>

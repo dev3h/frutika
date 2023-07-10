@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,47 +73,38 @@
                                     <a href="/">Trang chủ</a>
                                 </li>
                                 <li>
-                                    <a href="/shop.php">Cửa hàng</a>
+                                    <a href="/views/product">Cửa hàng</a>
                                 </li>
                                 <li>
-                                    <a href="/news.php">Bài viết</a>
+                                    <a href="/views/news">Bài viết</a>
                                 </li>
                                 <li>
-                                    <a href="/contact.php">Liên hệ</a>
+                                    <a href="/views/contact">Liên hệ</a>
                                 </li>
-                                <li><a href="/about.php">Giới thiệu</a></li>
+                                <li><a href="/views/about">Giới thiệu</a></li>
                                 <li>
                                     <div class="header-icons">
                                         <div class="cart-nums">
-                                            <a class="shopping-cart" <?php
-                                                                        if (isset($_SESSION['id'])) {
-                                                                            echo 'href="/cart.php"';
-                                                                        } else {
-                                                                            echo 'href="/login-register"';
-                                                                        }
-                                                                        ?>><i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                            <?php
-                                            if (isset($_SESSION['id'])) { ?>
-                                                <span id="cart-quantity">
-                                                    <?php
-                                                    $customer_id = $_SESSION['id'];
-                                                    if (isset($_SESSION['cart'])) {
-                                                        if (sizeof($_SESSION['cart']) > 0) {
-                                                            if(isset($_SESSION['cart'][$customer_id])){
-                                                                $cart = $_SESSION['cart'][$customer_id];
-                                                                echo sizeof($cart);
-                                                            } else {
-                                                                echo 0;
-                                                            }
-                                                            
-                                                        } 
-                                                    } else {
-                                                        echo 0;
-                                                    }
-                                                    ?>
-                                                </span>
-                                            <?php } ?>
+                                            <a class="shopping-cart" <?php if (isset($_SESSION['id'])) {echo 'href="/views/cart"';} else {echo 'href="/views/auth"';}?>><i class="fas fa-shopping-cart"></i></a>
+                                        <?php if (isset($_SESSION['id'])) {?>
+                                            <span id="cart-quantity">
+                                                <?php $customer_id = $_SESSION['id'];
+    if (isset($_SESSION['cart'])) {
+        if (sizeof($_SESSION['cart']) > 0) {
+            if (isset($_SESSION['cart'][$customer_id])) {
+                $cart = $_SESSION['cart'][$customer_id];
+                echo sizeof($cart);
+            } else {
+                echo 0;
+            }
+        }
+    } else {
+        echo 0;
+    }
+
+    ?>
+                                        </span>
+                                            <?php }?>
                                         </div>
                                         <div class="mobile-hide search-bar-icon">
                                             <i class="fas fa-search icon-search"></i>
@@ -125,18 +116,18 @@
                                             </div>
                                         </div>
                                         <?php
-                                        if (isset($_SESSION['id'])) { ?>
+if (isset($_SESSION['id'])) {?>
                                             <div class="user-menu">
                                                 <span class="user-menu--name"><?php echo $_SESSION['name'] ?></span>
                                                 <ul class="user-menu__item">
-                                                    <li><a href="/profile.php">Tài khoản</a></li>
+                                                    <li><a href="/views/profile">Tài khoản</a></li>
                                                     <li><a href="/myOrder">Đơn hàng</a></li>
                                                     <li><a href="/logout.php">Đăng xuất</a></li>
                                                 </ul>
                                             </div>
-                                        <?php } else { ?>
-                                            <a class="account-icon" href="/login-register"><i class="fas fa-user"></i></a>
-                                        <?php } ?>
+                                        <?php } else {?>
+                                            <a class="account-icon" href="/views/auth"><i class="fas fa-user"></i></a>
+                                        <?php }?>
                                     </div>
                                 </li>
                             </ul>

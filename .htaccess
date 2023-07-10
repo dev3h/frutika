@@ -1,2 +1,2 @@
 RewriteEngine on
-RewriteRule ^post/(.*).html$ ./single-news.php?url=$1
+RewriteRule ^views/news/detail-news/(.*).html$ ./views/news/detail-news?url=$1

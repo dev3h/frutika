@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once './classes/db.php';
-require_once './path.php';
+require_once '../../classes/db.php';
+require_once '../../path.php';
 
 $conn = Database::getConnection();
 
@@ -42,7 +42,7 @@ if (isset($_POST['update_profile'])) {
         if (in_array($file_ext, $extensions) === false) {
             $res = [
                 'status' => 415,
-                'message' => 'Chỉ hỗ trợ upload file JPEG, PNG, JPG'
+                'message' => 'Chỉ hỗ trợ upload file JPEG, PNG, JPG',
             ];
             echo json_encode($res);
             return false;
@@ -50,7 +50,7 @@ if (isset($_POST['update_profile'])) {
         if ($file_size > 2097152) {
             $res = [
                 'status' => 413,
-                'message' => 'Kích thước file không được lớn hơn 2MB'
+                'message' => 'Kích thước file không được lớn hơn 2MB',
             ];
             echo json_encode($res);
             return false;
@@ -61,10 +61,10 @@ if (isset($_POST['update_profile'])) {
         $file_name = $_POST['photo_old'];
     }
 
-    if ($name == NULL || $email == NULL || $phone_number == NULL || $address == NULL) {
+    if ($name == null || $email == null || $phone_number == null || $address == null) {
         $res = [
             'status' => 422,
-            'message' => 'Vui lòng nhập đầy đủ thông tin'
+            'message' => 'Vui lòng nhập đầy đủ thông tin',
         ];
         echo json_encode($res);
         return false;
@@ -78,7 +78,7 @@ if (isset($_POST['update_profile'])) {
     //     return false;
     // }
     if (handleCorrectPass($id, $password) == 1) {
-        if ($newPassword == NULL || $newPassword == "") {
+        if ($newPassword == null || $newPassword == "") {
             $query = "UPDATE customers SET name='$name', photo = '$file_name', email='$email',phone_number='$phone_number',address='$address' WHERE id='$id'";
         } else {
             $query = "UPDATE customers SET name='$name', photo = '$file_name', email='$email',phone_number='$phone_number',address='$address', password='$newPassword' WHERE id='$id'";
@@ -88,14 +88,14 @@ if (isset($_POST['update_profile'])) {
         if ($query_run) {
             $res = [
                 'status' => 200,
-                'message' => 'Cập nhập thông tin thành công'
+                'message' => 'Cập nhập thông tin thành công',
             ];
             echo json_encode($res);
             return false;
         } else {
             $res = [
                 'status' => 500,
-                'message' => 'Cập nhập thông tin thất bại'
+                'message' => 'Cập nhập thông tin thất bại',
             ];
             echo json_encode($res);
             return false;
@@ -103,7 +103,7 @@ if (isset($_POST['update_profile'])) {
     } else {
         $res = [
             'status' => 401,
-            'message' => 'Yêu cầu nhập mật khẩu để sửa'
+            'message' => 'Yêu cầu nhập mật khẩu để sửa',
         ];
         echo json_encode($res);
         return false;

@@ -23,7 +23,7 @@ $(document).ready(function () {
     $.ajax({
       type: "get",
       dataType: "json",
-      url: "data-news.php",
+      url: "/views/news/data-news.php",
       data: { page },
       success: function (result) {
         var html = "";
@@ -31,19 +31,19 @@ $(document).ready(function () {
           return `
         <div class="col-lg-4 col-md-6">
                 <div class="single-latest-news">
-                    <a href="./post/${obj.url}.html">
+                    <a href="./detail-news/${obj.url}.html">
                         <div class="latest-news-bg">
                             <img src="/admin/assets/uploads/news/${obj.photo}" alt="frutica-${obj.title}" style="width: 100%; height: 100%; object-fit: cover" />
                         </div>
                     </a>
                     <div class="news-text-box">
-                        <h3><a href="./post/${obj.url}.html">${obj.title}</a></h3>
+                        <h3><a href="./detail-news/${obj.url}.html">${obj.title}</a></h3>
                         <p class="blog-meta">
                             <span class="author"><i class="fas fa-user"></i> Admin</span>
                             <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
                         </p>
                         <p class="excerpt">${obj.content}</p>
-                        <a href="./post/${obj.url}.html" class="read-more-btn">đọc thêm <i class="fas fa-angle-right"></i></a>
+                        <a href="./detail-news/${obj.url}.html" class="read-more-btn">đọc thêm <i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
              </div>

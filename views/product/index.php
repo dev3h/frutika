@@ -1,14 +1,14 @@
 <?php
 $title = 'Cửa hàng';
-require_once './path.php';
+require_once '../../path.php';
 require_once ROOT . 'includes/header.php';
 require_once ROOT . 'functions/handleCurrency.php';
 require_once ROOT . 'classes/db.php';
 
-$page  = 1;
+$page = 1;
 
 if (isset($_GET['page'])) {
-	$page = $_GET['page'];
+    $page = $_GET['page'];
 }
 
 // $sql = "SELECT COUNT(*) FROM products ";
@@ -50,17 +50,17 @@ $productsList = Database::getInstance()->query($query);
 						<li class="active" data-filter="*">All</li>
 						<?php
 
-						$query = "SELECT * FROM categories";
-						$categories = Database::getInstance()->query($query);
+$query = "SELECT * FROM categories";
+$categories = Database::getInstance()->query($query);
 
-						if ($categories->num_rows > 0) {
-							foreach ($categories as $each) {
-								$name = explode(" ", $each['name']);
-								$filter = implode("-", $name);
-						?>
+if ($categories->num_rows > 0) {
+    foreach ($categories as $each) {
+        $name = explode(" ", $each['name']);
+        $filter = implode("-", $name);
+        ?>
 								<li data-filter=".<?php echo $filter ?>"><?php echo $each['name'] ?></li>
 						<?php }
-						} ?>
+}?>
 					</ul>
 				</div>
 			</div>
@@ -69,16 +69,15 @@ $productsList = Database::getInstance()->query($query);
 		<div class="row product-lists">
 			<?php
 
-
-			if ($productsList->num_rows > 0) {
-				foreach ($productsList  as $product) {
-					$name = explode(" ", $product['category_name']);
-					$filter = implode("-", $name);
-			?>
+if ($productsList->num_rows > 0) {
+    foreach ($productsList as $product) {
+        $name = explode(" ", $product['category_name']);
+        $filter = implode("-", $name);
+        ?>
 					<div class="col-lg-4 col-md-6 text-center <?php echo $filter ?>">
 						<div class="single-product-item">
 							<div class="product-image single-product-image">
-								<a href="single-product.php?id=<?php echo $product['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $product['photo'] ?>" alt="frutikha - <?php $product['name'] ?> "></a>
+								<a href="/views/product/detail-product?id=<?php echo $product['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $product['photo'] ?>" alt="frutikha - <?php $product['name']?> "></a>
 							</div>
 							<h3><?php echo $product['name'] ?></h3>
 							<p class="product-price d-flex"><?php echo handleCurrency($product['price']) ?></p>
@@ -87,12 +86,12 @@ $productsList = Database::getInstance()->query($query);
 						</div>
 					</div>
 			<?php }
-			} ?>
+}?>
 		</div>
 	</div>
 </div>
 <!-- end products -->
 
 
-<?php require_once ROOT . 'includes/footer.php'; ?>
-<script src="/assets/js/ajax/ajaxAddToCart.js"></script>
+<?php require_once ROOT . 'includes/footer.php';?>
+<script src="../../assets/js/ajax/ajaxAddToCart.js"></script>

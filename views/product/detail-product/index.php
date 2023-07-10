@@ -1,14 +1,14 @@
 <?php
 $title = "";
-require_once "includes/header.php";
-require_once "classes/db.php";
+require_once '../../../includes/header.php';
+require_once "../../../classes/db.php";
 $id = $_GET['id'];
 
 $sql = "SELECT * FROM products WHERE products.id = '$id'";
 $result = Database::getInstance()->query($sql);
 $each = $result->fetch_assoc();
 
-$sql = "SELECT products.id, customers.name as customer_name, customers.photo as customer_photo, rating, comment FROM products 
+$sql = "SELECT products.id, customers.name as customer_name, customers.photo as customer_photo, rating, comment FROM products
 JOIN products_rating ON products.id = products_rating.product_id
 JOIN customers ON customers.id = products_rating.customer_id
   WHERE products.id = '$id' ORDER BY create_at DESC";
@@ -95,7 +95,7 @@ $comments = Database::getInstance()->query($sql);
 				<button class="rating-btn">Đánh giá</button>
 			</div>
 		</form>
-		<?php foreach ($comments as $comment) { ?>
+		<?php foreach ($comments as $comment) {?>
 			<div class="comment-group">
 				<div class="comment-customer-photo">
 					<img src="/admin/assets/uploads/customers/<?php echo $comment['customer_photo'] ?>" alt="">
@@ -107,7 +107,7 @@ $comments = Database::getInstance()->query($sql);
 				</div>
 
 			</div>
-		<?php } ?>
+		<?php }?>
 	</div>
 	<div id="tabs-3">
 		<p>Chưa có gì</p>
@@ -127,16 +127,16 @@ $comments = Database::getInstance()->query($sql);
 		</div>
 		<div class="row">
 			<?php
-			require_once 'classes/db.php';
-			$query = "SELECT * FROM products WHERE category_id='" . $each['category_id'] . "' AND NOT id='" . $each['id'] . "'ORDER BY RAND() LIMIT 3";
-			$query_run = Database::getInstance()->query($query);
+require_once '../../../classes/db.php';
+$query = "SELECT * FROM products WHERE category_id='" . $each['category_id'] . "' AND NOT id='" . $each['id'] . "'ORDER BY RAND() LIMIT 3";
+$query_run = Database::getInstance()->query($query);
 
-			if ($query_run->num_rows > 0) {
-				foreach ($query_run as $each) { ?>
+if ($query_run->num_rows > 0) {
+    foreach ($query_run as $each) {?>
 					<div class="col-lg-4 col-md-6 text-center">
 						<div class="single-product-item single-product-container">
 							<div class="product-image single-product-image">
-								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name'] ?>"></a>
+								<a href="single-product.php?id=<?php echo $each['id'] ?>" class="product-image-link"><img src="/admin/assets/uploads/products/<?php echo $each['photo'] ?>" alt="frutikha - <?php $each['name']?>"></a>
 							</div>
 							<h3><?php echo $each['name'] ?></h3>
 							<p class="product-price"><?php echo number_format($each['price'], 0, '', '.') ?></p>
@@ -144,13 +144,13 @@ $comments = Database::getInstance()->query($sql);
 						</div>
 					</div>
 			<?php }
-			} ?>
+}?>
 		</div>
 	</div>
 </div>
 <!-- end more products -->
 
 
-<?php require_once 'includes/footer.php' ?>
-<script src="/assets/js/ajax/ajaxAddToCart.js"></script>
-<script src="/assets/js/ajax/ajaxRating.js"></script>
+<?php require_once '../../../includes/footer.php';?>
+<script src="../../../assets/js/ajax/ajaxAddToCart.js"></script>
+<script src="../../../assets/js/ajax/ajaxRating.js"></script>
